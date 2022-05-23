@@ -1,0 +1,18 @@
+* {
+    box-sizing: border-box;
+}
+
+#nav {
+    position: fixed;
+    width: 100%;
+    background-color: wheat;
+}
+
+ul #navlist {
+    list-style-type: none;
+}
+
+li .navli {
+    padding: 10px;
+    
+}
