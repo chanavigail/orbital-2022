@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 #nav {
@@ -22,11 +22,11 @@ ul #navlist {
     padding: 10px 20px;
     margin: 10px;
     border-radius: 3px;
-    background-color: wheat;
+    background-color: rgb(224, 99, 45);
     color: white;
 }
 
 #usertab {
     position: fixed;
-    right: 20;
+    right: 0;
 }
