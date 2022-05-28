@@ -18,6 +18,11 @@ ul #navlist {
     list-style-type: none;
 }
 
+a {
+    color: white;
+    text-decoration: none;
+}
+
 .navli {
     padding: 10px 20px;
     margin: 10px;

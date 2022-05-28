@@ -1,0 +1,42 @@
+* {
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: ivory;
+}
+
+.nav {
+    display: inline-block;
+}
+
+ul #navlist {
+    list-style-type: none;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+.navli {
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 3px;
+    background-color: rgb(224, 99, 45);
+    color: white;
+}
+
+#usertab {
+    position: fixed;
+    right: 0;
+}
+
+#login-form {
+    position: fixed;
+    top: 150px;
+}
