@@ -3,14 +3,22 @@ import { Link } from "react-router-dom";
 
 function Navbar() {
     return (
-        <div id="nav">
-            <img src={require("../images/logo.png")} width="273" height="50" alt="DineTogether logo" className="nav" />
+        <nav id="nav">
+            <Link to ="/welcome">
+                <img src={require("../images/logo.png")} width="273" height="50" alt="DineTogether logo" className="nav" />
+            </Link>
             <ul id="navlist" className="nav">
-                <li className="navli nav"><a href="locations.html">All Locations</a></li>
-                <li className="navli nav"><a href="friends.html">Friends</a></li>
-                <li className="navli nav" id="usertab"><a href="profile.html">Profile</a></li>
+                <li className="navli nav">
+                    <Link to="/locations">All Locations</Link>
+                </li>
+                <li className="navli nav">
+                    <Link to="/friends">Friends</Link>
+                </li>
+                <li className="navli nav" id="usertab">
+                    <Link to="/profile">Profile</Link>
+                </li>
             </ul>
-        </div>
+        </nav>
     )
 };
 
