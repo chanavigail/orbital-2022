@@ -35,3 +35,33 @@ a {
     position: fixed;
     right: 0;
 }
+
+main {
+    background-color: ivory;
+}
+
+#login-form {
+    position: fixed;
+    top: 150px;
+    left: 30%;
+    justify-items: center;
+    background-color: rgb(243,  173, 80);
+}
+
+.field {
+    padding: 10px;
+}
+
+button {
+    size: 150%;
+}
+
+.popup {
+    visibility: hidden;
+    z-index: 1;
+    text-align: center;
+}
+
+.popup .show {
+    visibility: visible;
+}
