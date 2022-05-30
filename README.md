@@ -69,8 +69,8 @@ _TeleBot_
 <img src = https://user-images.githubusercontent.com/99885253/171016403-17a314ab-9df0-4065-98e5-1c501889aace.png width = "500">
 You will be prompted to restart runtime.
 <img src = https://user-images.githubusercontent.com/99885253/171017249-416b4936-a7af-4ab9-a905-160430a1a547.png width = "500">
-Press the restart runtime button.br/>
-3. Run all the remaining cells.br/>
+Press the restart runtime button.<br/>
+3. Run all the remaining cells.<br/>
 4. Open this link: http://t.me/DineTogether_bot to use the bot.
 
 The telebot is currently not finished. We will be linking the bot to the database such that the bot is able to update the number of seats/tables available for people to conveniently check.
