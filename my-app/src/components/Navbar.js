@@ -14,6 +14,9 @@ function Navbar() {
                 <li className="navli nav">
                     <Link to="/friends">Friends</Link>
                 </li>
+                <li className="navli nav">
+                    <Link to="/invitations">Invitations</Link>
+                </li>
                 <li className="navli nav" id="usertab">
                     <Link to="/profile">Profile</Link>
                 </li>
