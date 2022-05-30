@@ -12,7 +12,7 @@ Many of us resort to standing around in the eatery waiting for a table to be cle
 
 **Aim**
 
-We hope to give students an avenue to meet new people and make friends by having meals in the DH of student residences and other canteens in NUS together.
+We hope to give students an avenue to meet new people and make friends by having meals in the DH of student residences and other canteens in NUS together and also reduce time wasted waiting for tables.
 
 **User Stories**
 
@@ -23,14 +23,7 @@ We hope to give students an avenue to meet new people and make friends by having
 3. As an administrator who wants to prevent abuse of the system, I want to be able to identify abusers, warn them and ban them if they continue to cause problems.
 
 
-**Features**
-
-A WebApp that will 
-
-Features to be completed by the mid of June: 
-
-The Telegram bot has limited features (cannot display all friends and their statuses, cannot look for new friends/specific available tables) due to limited screen space and the potential notification spam. 
-
+**Features** 
 
 1. Telegram Bot
 - Provides a quick and convenient interface to check the general availability of seats/tables in the DH/canteen
@@ -41,12 +34,6 @@ The Telegram bot has limited features (cannot display all friends and their stat
 - Users who want to meet new people can put up a table invitation that non-friends can accept.
 - Allow a group of friends to check the availability of tables to reduce waiting time.
 - Recommendations will be provided with machine learning (eg. ‘speed dials’ for friends who you eat often, new friends who you might click with, etc)
-
-3. Mechanisms to collect datasets for analysis
-
-Features to be completed by the mid of July: 
-
-1. Providing recommendations with machine learning (eg. ‘speed dials’ for friends who you eat often, new friends who you might click with, etc).
 
 **Timeline**
 
