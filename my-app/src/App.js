@@ -7,6 +7,7 @@ import MainPage from "./components/MainPage";
 import Locations from "./components/Locations";
 import Friends from "./components/Friends";
 import Profile from "./components/Profile";
+import Invitations from "./components/Invitations";
 
 import "./index.css";
 
@@ -19,6 +20,7 @@ export default function App() {
                     <Route path="/welcome" element={<MainPage />} />
                     <Route path="/locations" element={<Locations />} />
                     <Route path="/friends" element={<Friends />} />
+                    <Route path="/invitations" element={<Invitations />} />
                     <Route path="/profile" element={<Profile />} />
                 </Routes>
             </AuthProvider>
