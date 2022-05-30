@@ -25,9 +25,7 @@ We hope to give students an avenue to meet new people and make friends by having
 
 **Features**
 
-The Telegram Bot provides a quick and convenient interface to check the general availability of seats and a list of friends who are currently in the DH. 
-
-A Mobile Application that will share a common database with the Telegram Bot and provide greater functionality with a traditional non-chat-based interface. This will include different menus for seat availability, a friends list and their statuses, and user base-wide polls.
+A WebApp that will 
 
 Features to be completed by the mid of June: 
 
@@ -35,14 +33,14 @@ The Telegram bot has limited features (cannot display all friends and their stat
 
 
 1. Telegram Bot
-Allow users to check the number of seats available in the DH/canteen.
-Allow users to see which friends are currently dining at the location.
+- Provides a quick and convenient interface to check the general availability of seats/tables in the DH/canteen
 
-2. Mobile App
-Allow users to add friends and see when their friends are going for lunch/dinner.
-Users can also send requests to existing friends to get a meal together.
-Users who want to meet new people can put up a table invitation that non-friends can accept.
-Allow a group of friends to check the availability of tables to reduce waiting time.
+2. Web App
+- Allow users to add friends and see when their friends are going for lunch/dinner.
+- Users can also send requests to existing friends to get a meal together.
+- Users who want to meet new people can put up a table invitation that non-friends can accept.
+- Allow a group of friends to check the availability of tables to reduce waiting time.
+- Recommendations will be provided with machine learning (eg. ‘speed dials’ for friends who you eat often, new friends who you might click with, etc)
 
 3. Mechanisms to collect datasets for analysis
 
@@ -58,10 +56,10 @@ _Poster & Video submission - 16 May_<br/>
 23 May to 29 May: Learn how to create telebot and create basic features, carry on working on web app<br/>
 _Milestone 1 - 30 May_<br/>
 30 May to 5 June: Find out how to link database to telebot and web app<br/>
-6 June to 12 June: <br/>
-13 June to 26 June: Complete both telebot and web app<br/>
+6 June to 12 June: Complete Telebot, work on web app<br/>
+13 June to 26 June: Complete web app, learn machine learning<br/>
 _Milestone 2 - 27 June_<br/>
-27 June to 3 July: <br/>
+27 June to 3 July: Add in features related  to machine learning<br/>
 4 July to 10 July: Testing and debugging<br/>
 11 July to 17 July: Testing and debugging<br/>
 18 July to 24 July: Testing and debugging<br/>
