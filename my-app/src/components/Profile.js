@@ -1,29 +1,29 @@
 import React from 'react';
 import { useNavigate, Link } from "react-router-dom";
-import { useAuth } from '../contexts/Auth';
+// import { useAuth } from '../contexts/Auth';
 
 export default function Profile() {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
-  const { signUp } = useAuth();
-  const navigate = useNavigate();
+  // const { signUp } = useAuth();
+  // const navigate = useNavigate();
 
-  async function handleSubmit(e) {
-    e.preventDefault()
+  // async function handleSubmit(e) {
+  //   e.preventDefault()
 
-    const { error } = await signUp({ email, password })
-    if (error) {
-      alert("error signing in")
-    } else {
-      navigate("/welcome")
-    }
-  }
+  //   const { error } = await signUp({ email, password })
+  //   if (error) {
+  //     alert("error signing in")
+  //   } else {
+  //     navigate("/welcome")
+  //   }
+  // }
 
   return (
     <div className="profile">
       <h1 className="header">Sign Up</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={"/"}>
         <label htmlFor="email">Email</label>
         <input
           id="email"

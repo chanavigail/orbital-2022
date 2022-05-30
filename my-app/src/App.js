@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import { AuthProvider } from "./contexts/Auth";
+// import { AuthProvider } from "./contexts/Auth";
 import Navbar from "./components/Navbar";
 import MainPage from "./components/MainPage";
 import Locations from "./components/Locations";
@@ -14,7 +14,7 @@ import "./index.css";
 export default function App() {
     return (
         <Router className="App">
-            <AuthProvider>
+            {/* <AuthProvider> */}
                 <Navbar />
                 <Routes>
                     <Route path="/welcome" element={<MainPage />} />
@@ -23,7 +23,7 @@ export default function App() {
                     <Route path="/invitations" element={<Invitations />} />
                     <Route path="/profile" element={<Profile />} />
                 </Routes>
-            </AuthProvider>
+            {/* </AuthProvider> */}
         </Router>
     );
 }
