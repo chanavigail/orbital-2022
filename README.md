@@ -60,3 +60,20 @@ _Milestone 3 - 25 July_
 3. Python
 4. Google Colab
 5. TensorFlow
+
+**User Guide**
+
+_TeleBot_
+1. Open this link: https://colab.research.google.com/drive/1zcxA6660qrBXZNI206slLfFDxMaAz0zL#scrollTo=ws5dp6cEol6_
+2. Run the first cell. 
+<img src = https://user-images.githubusercontent.com/99885253/171016403-17a314ab-9df0-4065-98e5-1c501889aace.png width = "500">
+You will be prompted to restart runtime.
+<img src = https://user-images.githubusercontent.com/99885253/171017249-416b4936-a7af-4ab9-a905-160430a1a547.png width = "500">
+Press the restart runtime button.br/>
+3. Run all the remaining cells.br/>
+4. Open this link: http://t.me/DineTogether_bot to use the bot.
+
+The telebot is currently not finished. We will be linking the bot to the database such that the bot is able to update the number of seats/tables available for people to conveniently check.
+
+_WebApp_
+1. 
