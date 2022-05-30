@@ -44,7 +44,7 @@ _Poster & Video submission - 16 May_<br/>
 _Milestone 1 - 30 May_<br/>
 30 May to 5 June: Find out how to link database to telebot and web app<br/>
 6 June to 12 June: Complete Telebot, work on web app<br/>
-13 June to 26 June: Complete web app, learn machine learning<br/>
+13 June to 26 June: Complete basic features of web app, learn machine learning<br/>
 _Milestone 2 - 27 June_<br/>
 27 June to 3 July: Add in features related  to machine learning<br/>
 4 July to 10 July: Testing and debugging<br/>
