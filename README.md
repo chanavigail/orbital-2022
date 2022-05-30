@@ -52,8 +52,26 @@ Features to be completed by the mid of July:
 
 **Timeline**
 
+9 May to 15 May: Attend ReactJS & Git/Github workshop for mission control 1, create poster and video
+Poster & Video submission - 16 May
+16 May to 22 May: Attend part 2 of ReactJS workshop, learn ReactJS by ourselves and start working on web app
+23 May to 29 May: Learn how to create telebot and create basic features, carry on working on web app
+Milestone 1 - 30 May
+30 May to 5 June: Find out how to link database to telebot and web app
+6 June to 12 June: 
+13 June to 26 June: Complete both telebot and web app
+Milestone 2 - 27 June
+27 June to 3 July: Add in point system and leaderboards to the bot
+4 July to 10 July: Testing and debugging
+11 July to 17 July: Testing and debugging
+18 July to 24 July: Testing and debugging
+Milestone 3 - 25 July
+
+
 **Tech Stack**
 
 1. Telegram API
-2. HTML/CSS/Javascript
+2. ReactJS (HTML/CSS/Javascript)
 3. Python
+4. Google Colab
+5. TensorFlow
