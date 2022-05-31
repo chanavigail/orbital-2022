@@ -46,6 +46,19 @@ h1 {
   top: 150px;
 }
 
+#checkin-form {
+  position: relative;
+  top: 180px;
+  width: 250px;
+  display: inline-block;
+}
+
+.checkin-button {
+  position: relative;
+  top: 180px;
+  left: 15px;
+}
+
 form {
   position: relative;
   top: 180px;
@@ -68,4 +81,8 @@ form {
   overflow-wrap: break-word;
   position: relative;
   left: 300px;
+}
+
+.status {
+  width: 250px;
 }

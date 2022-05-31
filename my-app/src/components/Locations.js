@@ -9,11 +9,12 @@ function Locations() {
                 <img 
                     src={require("../images/captdh.jpeg")} 
                     width="250" height="250" 
-                    alt="DineTogether logo" 
+                    alt="CAPT Dining Hall" 
                     id="captdh"
                     onClick={toggleStatus}
+                    className="loc"
                 />
-                <p id="captdh-status">
+                <p id="captdh-status" className="status">
                     Currently there's <strong>0 people</strong> in CAPT DH
                 </p>
             </div>
