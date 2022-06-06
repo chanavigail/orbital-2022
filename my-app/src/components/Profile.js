@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate, Link } from "react-router-dom";
 // import { useAuth } from '../contexts/Auth';
-// import { supabase } from '../supabase';
+import { supabase } from '../supabase';
 
 export default function Profile() {
   // const [email, setEmail] = React.useState('');
@@ -29,7 +29,7 @@ export default function Profile() {
   return (
     <div className="profile">
       <h1 className="header">Sign Up</h1>
-      <form onSubmit={signInWithGoogle}>
+      <form onSubmit={"/"}>
         {/* <label htmlFor="email">Email</label>
         <input
           id="email"
@@ -48,7 +48,7 @@ export default function Profile() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         /> */}
-        <button className="button block" type='submit'>
+        <button className="button block" type='submit' onClick={signInWithGoogle}>
           Register
         </button>
       </form>
