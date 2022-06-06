@@ -20,6 +20,11 @@ export default function Profile() {
   //     navigate("/welcome")
   //   }
   // }
+  async function signInWithGoogle() {
+    const { users, error } = await supabase.auth.signIn({
+      provider: 'google',
+    })
+  }
 
   return (
     <div className="profile">
@@ -43,7 +48,7 @@ export default function Profile() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         /> */}
-        <button className="button block">
+        <button className="button block" type='submit'>
           Register
         </button>
       </form>
@@ -51,8 +56,3 @@ export default function Profile() {
   )
 }
 
-async function signInWithGoogle() {
-  const { user, session, error } = await supabase.auth.signIn({
-    provider: 'google',
-  })
-}
