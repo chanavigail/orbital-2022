@@ -46,7 +46,43 @@ h1 {
   top: 150px;
 }
 
+#checkin-form {
+  position: relative;
+  top: 180px;
+  width: 250px;
+  display: inline-block;
+}
+
+.checkin-button {
+  position: relative;
+  top: 180px;
+  left: 15px;
+}
+
 form {
   position: relative;
   top: 180px;
+}
+
+#captdh {
+  position: relative;
+  top: 200px;
+  display: block;
+}
+
+#captdh:hover {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+}
+
+#captdh-status {
+  display: none;
+  z-index: 1;
+  width: 250;
+  overflow-wrap: break-word;
+  position: relative;
+  left: 300px;
+}
+
+.status {
+  width: 250px;
 }
