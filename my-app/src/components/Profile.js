@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate, Link } from "react-router-dom";
 // import { useAuth } from '../contexts/Auth';
-// import { supabase } from '../supabase';
+import { supabase } from '../supabase';
 
 export default function Profile() {
   // const [email, setEmail] = React.useState('');
@@ -20,11 +20,11 @@ export default function Profile() {
   //     navigate("/welcome")
   //   }
   // }
-  // async function signInWithGoogle() {
-  //   const { user, session, error } = await supabase.auth.signIn({
-  //     provider: 'google',
-  //   })
-  // }
+  async function signInWithGoogle() {
+    const { user, session, error } = await supabase.auth.signIn({
+      provider: 'google',
+    })
+  }
 
   return (
     <div className="profile">
