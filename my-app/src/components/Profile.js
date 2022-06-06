@@ -29,7 +29,7 @@ export default function Profile() {
   return (
     <div className="profile">
       <h1 className="header">Sign Up</h1>
-      <form onSubmit={"/"}>
+      <form onSubmit={"/welcome"}>
         {/* <label htmlFor="email">Email</label>
         <input
           id="email"
@@ -48,7 +48,7 @@ export default function Profile() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         /> */}
-        <button className="button block" type='submit' onClick={"/"}>
+        <button className="button block" type='submit' onClick={signInWithGoogle}>
           Register
         </button>
       </form>
