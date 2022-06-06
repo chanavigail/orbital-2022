@@ -1,10 +1,11 @@
 import React from 'react';
 import { useNavigate, Link } from "react-router-dom";
 // import { useAuth } from '../contexts/Auth';
+import { supabase } from '../supabase';
 
 export default function Profile() {
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  // const [email, setEmail] = React.useState('');
+  // const [password, setPassword] = React.useState('');
 
   // const { signUp } = useAuth();
   // const navigate = useNavigate();
@@ -23,8 +24,8 @@ export default function Profile() {
   return (
     <div className="profile">
       <h1 className="header">Sign Up</h1>
-      <form onSubmit={"/"}>
-        <label htmlFor="email">Email</label>
+      <form onSubmit={signInWithGoogle}>
+        {/* <label htmlFor="email">Email</label>
         <input
           id="email"
           className="inputField"
@@ -41,11 +42,17 @@ export default function Profile() {
           placeholder="Your password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-        />
+        /> */}
         <button className="button block">
           Register
         </button>
       </form>
     </div>
   )
+}
+
+async function signInWithGoogle() {
+  const { user, session, error } = await supabase.auth.signIn({
+    provider: 'google',
+  })
 }
