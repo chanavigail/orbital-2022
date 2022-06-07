@@ -14,16 +14,14 @@ import "./index.css";
 export default function App() {
     return (
         <Router className="App">
-            {/* <AuthProvider> */}
-                <Navbar />
-                <Routes>
-                    <Route path="/welcome" element={<MainPage />} />
-                    <Route path="/locations" element={<Locations />} />
-                    <Route path="/friends" element={<Friends />} />
-                    <Route path="/invitations" element={<Invitations />} />
-                    <Route path="/profile" element={<Profile />} />
-                </Routes>
-            {/* </AuthProvider> */}
+            <Navbar />
+            <Routes>
+                <Route path="/welcome" element={<MainPage />} />
+                <Route path="/locations" element={<Locations />} />
+                <Route path="/friends" element={<Friends />} />
+                <Route path="/invitations" element={<Invitations />} />
+                <Route path="/profile" element={<Profile />} />
+            </Routes>
         </Router>
     );
 }
