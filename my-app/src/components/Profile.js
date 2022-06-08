@@ -8,16 +8,28 @@ export default function Profile() {
   const [password, setPassword] = React.useState('');
 
   async function signUp() {
+    const [count, setCount] = React.useState( {res: 0} );
     const { data, error } = await supabase
       .from("users")
       .insert([
         { username: username, password: password, current_loc: null }
       ]);
+    setCount(data);
+    alert(count);
   }
 
   async function checkFirst() {
     const check = checkSignUp(username, password);
-    check ? alert("successful check") : alert("Username already in use, please choose another username")
+    alert(check);
+    check ? signUp() : alert("Username already in use, please choose another username")
+  }
+
+  async function test() {
+    alert(username + password);
+    const { user, error } = await supabase.auth.signUp({
+      email: username,
+      password: password
+    })
   }
 
   return (
