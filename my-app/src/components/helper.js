@@ -3,14 +3,14 @@ import React, { useState } from "react";
 import { supabase } from "../supabase";
 
 export async function checkSignUp(username, password) {
-    const [check, setCheck] = useState( 0 );
-    const { data, error } = await supabase
+    const [check, setCheck] = useState( -1 );
+    const { count, error } = await supabase
         .from('users')
-        .select('username', { count: 'exact' })
+        .select('username', { count: 'exact', head: true })
         .eq("username", username)
-        .then(users => {
-            setCheck(users[0])
+        .then(c => {
+            setCheck(c[0])
         })
         .catch(console.error);
-    return check;
+    return check < 1;
 }
