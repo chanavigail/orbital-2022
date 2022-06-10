@@ -1,0 +1,44 @@
+.new-invitation__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  text-align: left;
+  align-items: center;
+}
+
+.new-invitation__control label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: block;
+  position: relative;
+  top: -160px;
+}
+
+.new-invitation__control input {
+  font: inherit;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 20rem;
+  max-width: 100%;
+  position: relative;
+  top: -160px;
+}
+
+.new-invitation__control select {
+  font: inherit;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 20rem;
+  max-width: 100%;
+  position: relative;
+  top: -160px;
+}
+
+.new-invitation__actions {
+  text-align: right;
+  position: relative;
+  top: -210px;
+}

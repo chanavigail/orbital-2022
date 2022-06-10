@@ -1,0 +1,40 @@
+.new-invitation {
+  background-color: #ffda6a;
+  padding: 1rem;
+  margin: 2rem auto;
+  width: 50rem;
+  max-width: 95%;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+  position: relative;
+  top: 150px;
+}
+
+.new-invitation button {
+  font: inherit;
+  cursor: pointer;
+  padding: 1rem 2rem;
+  border: 1px solid #d69641;
+  background-color: #ffb24d;
+  color: white;
+  border-radius: 12px;
+  margin-right: 1rem;
+}
+
+.new-invitation button:hover,
+.new-invitation button:active {
+  background-color: #ff8800;
+  border-color: #da7400;
+}
+
+.new-invitation button.alternative {
+  color: #220131;
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.new-invitation button.alternative:hover,
+.new-invitation button.alternative:active {
+  background-color: #ddb3f8;
+}
