@@ -1,25 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate, Link } from "react-router-dom";
-import { supabase } from '../supabase';
-import { checkSignUp } from './helper';
+import { checkSignUp, dbSignUp } from './helper';
 
 export default function Profile() {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
 
-  async function signUp() {
-    const { data, error } = await supabase
-      .from("users")
-      .insert([
-        { username: username, password: password, current_loc: null }
-      ]);
-    alert("Successful");
+  function signUp() {
+    dbSignUp(username, password);
+    alert("Successful!");
   }
 
-  async function checkFirst() {
-    const check = checkSignUp(username, password);
-    alert(check);
-    check ? signUp() : alert("Username already in use, please choose another username")
+  function checkFirst() {
+    const [ count, setCount ] = React.useState(99);
+    const check = checkSignUp(username, password)
+      .then(user => setCount(user[0]))
+      .catch(console.error);
+    alert(count);
+    count < 1 ? signUp() : alert("Username already in use, please choose another username")
   }
 
   return (
