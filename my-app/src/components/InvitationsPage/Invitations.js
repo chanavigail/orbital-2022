@@ -12,7 +12,7 @@ function Invitations() {
 
       <NewInvitation />
 
-      <div className="invitation">
+      <div className="invitations">
         <CreatedInvitation></CreatedInvitation>
       </div>
     </div>

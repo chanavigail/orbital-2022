@@ -93,3 +93,41 @@ form {
 .status {
   width: 250px;
 }
+
+#utownFF {
+  position: relative;
+  top: 200px;
+  display: block;
+}
+
+#utownFF:hover {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+}
+
+#utownFF-status {
+  display: none;
+  z-index: 1;
+  width: 250;
+  overflow-wrap: break-word;
+  position: relative;
+  left: 300px;
+}
+
+#utownFC {
+  position: relative;
+  top: 200px;
+  display: block;
+}
+
+#utownFC:hover {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+}
+
+#utownFC-status {
+  display: none;
+  z-index: 1;
+  width: 250;
+  overflow-wrap: break-word;
+  position: relative;
+  left: 300px;
+}

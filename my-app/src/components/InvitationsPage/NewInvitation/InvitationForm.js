@@ -13,9 +13,9 @@ const InvitationForm = () => {
   const timeChangeHandler = (event) => {
     setEnteredTime(event.target.value);
   };
-  const locationChangeHandler = (event) => {
+  /*const locationChangeHandler = (event) => {
     setEnteredLocation(event.target.value);
-  };
+  }; */
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -33,6 +33,11 @@ const InvitationForm = () => {
     setEnteredLocation("");
   };
 
+  const [selectedLocation, selectLocation] = useState("");
+
+  const locationChangeHandler = (selectedLocation) => {
+    selectLocation(selectedLocation);
+  };
   return (
     <form onSubmit={submitHandler}>
       <div className="new-invitation__controls">
@@ -54,7 +59,7 @@ const InvitationForm = () => {
 
         <div className="new-invitation__control">
           <label>Location</label>
-          <select value={enteredLocation} onChange={locationChangeHandler}>
+          <select value={selectedLocation} onChange={selectLocation}>
             <option value="CAPT">CAPT DH</option>
             <option value="Tembusu">Tembusu DH</option>
             <option value="RC4">RC4 DH</option>
