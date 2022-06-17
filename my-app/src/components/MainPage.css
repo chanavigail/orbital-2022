@@ -1,0 +1,15 @@
+.mainpage {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5rem;
+}
+
+.mainpage h1 {
+  font-size: xx-large;
+  position: fixed;
+  padding-left: 1.5rem;
+}
+
+.test {
+  gap: 1rem;
+}
