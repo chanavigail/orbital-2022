@@ -1,10 +1,23 @@
 .invitations {
   display: flex;
   flex-direction: column;
-  position: relative;
-  top: 170px;
+  margin-top: 5rem;
+}
+
+.invitations h1 {
+  font-size: xx-large;
+  position: fixed;
+  padding-left: 1.5rem;
 }
 
 .create-invitation-button {
   justify-content: center;
+}
+
+.invitations-create-new {
+  margin-top: 0rem;
+}
+
+.invitations-created {
+  margin-top: 0rem;
 }

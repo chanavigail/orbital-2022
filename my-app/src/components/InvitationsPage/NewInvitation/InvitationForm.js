@@ -1,3 +1,15 @@
+import {
+  Card,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+  Button,
+  FormControl,
+  Typography,
+} from "@mui/material";
+
 import React, { useState } from "react";
 
 import "./InvitationForm.css";
@@ -13,9 +25,9 @@ const InvitationForm = () => {
   const timeChangeHandler = (event) => {
     setEnteredTime(event.target.value);
   };
-  /*const locationChangeHandler = (event) => {
+  const locationChangeHandler = (event) => {
     setEnteredLocation(event.target.value);
-  }; */
+  };
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -33,45 +45,71 @@ const InvitationForm = () => {
     setEnteredLocation("");
   };
 
-  const [selectedLocation, selectLocation] = useState("");
-
-  const locationChangeHandler = (selectedLocation) => {
-    selectLocation(selectedLocation);
-  };
   return (
-    <form onSubmit={submitHandler}>
-      <div className="new-invitation__controls">
-        <div className="new-invitation__control">
-          <label>Date</label>
-          <input
-            type="date"
-            min="2022-01-01"
-            max="2022-12-31"
-            value={enteredDate}
-            onChange={dateChangeHandler}
-          />
-        </div>
+    <>
+      <Card
+        onSubmit={submitHandler}
+        className="new-invitation__controls"
+        component="form"
+        style={{ backgroundColor: "#ffda6a" }}
+      >
+        <Typography align="center">
+          Input details to create new invitation!
+        </Typography>
 
-        <div className="new-invitation__control">
-          <label>Time</label>
-          <input type="time" value={enteredTime} onChange={timeChangeHandler} />
-        </div>
+        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+          <Grid item xs={6}>
+            <InputLabel>Date</InputLabel>
+            <TextField
+              id="date"
+              type="date"
+              sx={{ width: 250 }}
+              value={enteredDate}
+              onChange={dateChangeHandler}
+            />
+          </Grid>
 
-        <div className="new-invitation__control">
-          <label>Location</label>
-          <select value={selectedLocation} onChange={selectLocation}>
-            <option value="CAPT">CAPT DH</option>
-            <option value="Tembusu">Tembusu DH</option>
-            <option value="RC4">RC4 DH</option>
-            <option value="FC">Food Clique</option>
-          </select>
-        </div>
-      </div>
+          <Grid item xs={6}>
+            <InputLabel>Time</InputLabel>
+            <TextField
+              id="time"
+              type="time"
+              inputProps={{
+                step: 300, // 5 min
+              }}
+              sx={{ width: 250 }}
+              value={enteredTime}
+              onChange={timeChangeHandler}
+            />
+          </Grid>
 
-      <div className="new-invitation__actions">
-        <button type="submit">Create Invitation</button>
-      </div>
-    </form>
+          <Grid item xs={6}>
+            <InputLabel>Location</InputLabel>
+            <Select
+              sx={{ width: 250 }}
+              value={enteredLocation}
+              onChange={locationChangeHandler}
+            >
+              <MenuItem value="captdh">CAPT DH</MenuItem>
+              <MenuItem value="tembudh">Tembusu DH</MenuItem>
+              <MenuItem value="rc4dh">RC4 DH</MenuItem>
+              <MenuItem value="utownfc">UTOWN Food Clique</MenuItem>
+              <MenuItem value="utownff">UTOWN Fine Food</MenuItem>
+            </Select>
+          </Grid>
+
+          <Grid item xs={6}>
+            <Button
+              variant="contained"
+              style={{ backgroundColor: "#ffb24d" }}
+              type="submit"
+            >
+              Create Invitation
+            </Button>
+          </Grid>
+        </Grid>
+      </Card>
+    </>
   );
 };
 

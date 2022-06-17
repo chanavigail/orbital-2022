@@ -5,7 +5,7 @@ import InvitationForm from "./InvitationForm";
 
 const NewInvitation = () => {
   return (
-    <div className="new-invitation">
+    <div>
       <InvitationForm />
     </div>
   );
