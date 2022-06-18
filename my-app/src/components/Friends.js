@@ -1,9 +1,11 @@
 import React from "react";
 
+import "./Friends.css";
+
 function Friends() {
   return (
     <div>
-      <div id="checkin-box">
+      <div className="friends">
         <h1>Friends</h1>
       </div>
     </div>

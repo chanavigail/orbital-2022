@@ -1,0 +1,24 @@
+.date {
+  font: inherit;
+  display: flex;
+  flex-direction: row;
+  border-radius: 12px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.date month {
+  font-size: 0.75rem;
+  font-weight: bold;
+  flex: auto;
+}
+
+.date year {
+  font-size: 0.75rem;
+}
+
+.date day {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
