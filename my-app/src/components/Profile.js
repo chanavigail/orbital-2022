@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from "react-router-dom";
-import { checkSignUp, dbSignUp } from './helper';
+import React from 'react';
+// import { useNavigate, Link } from "react-router-dom";
+import { checkSignUp, dbSignUp } from './supabase';
 
 export default function Profile() {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [count, setCount] = React.useState(1);
 
-  function signUp() {
+  async function signUp() {
     dbSignUp(username, password);
     alert("Successful!");
   }
 
-  function checkFirst() {
-    const [ count, setCount ] = React.useState(99);
-    const check = checkSignUp(username, password)
+  async function checkFirst() {
+    alert(1)
+    const check = checkSignUp(username)
       .then(user => setCount(user[0]))
       .catch(console.error);
     alert(count);
