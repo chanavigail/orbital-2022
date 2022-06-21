@@ -29,35 +29,39 @@ const InvitationForm = (props) => {
     setEnteredLocation(event.target.value);
   };
 
-  useEffect(() => {
+  const user = supabase.auth.user();
+
+  /*useEffect(() => {
     fetchInvitations();
   }, []);
 
   async function fetchInvitations() {
     const { data } = await supabase.from("invitations").select();
-  }
+  }*/
 
   const submitHandler = (event) => {
     event.preventDefault();
 
     const invitationData = {
-      creatorName: Math.random().toString(),
-      date: new Date(enteredDate),
+      id: user.id,
+      date: enteredDate,
       time: enteredTime,
       location: enteredLocation,
+      accepted_people: [],
     };
 
-    const { creatorName, date, time, location } = invitationData;
+    console.log(invitationData);
 
-    async function addInvitation() {
-      await supabase
+    async function createInvitation() {
+      const { data, error } = await supabase
         .from("invitations")
-        .insert([{ creatorName, date, time, location }])
-        .single();
-      fetchInvitations();
+        .insert([{ ...invitationData }]);
+      console.log(error);
     }
 
-    props.onCreateInvitation(invitationData);
+    createInvitation();
+
+    /*props.onCreateInvitation(invitationData);*/
 
     setEnteredDate("");
     setEnteredTime("");

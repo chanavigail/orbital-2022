@@ -1,11 +1,4 @@
-import {
-  Box,
-  Button,
-  InputLabel,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import React from "react";
 import { useState, useEffect } from "react";
 import { supabase } from "./helper";

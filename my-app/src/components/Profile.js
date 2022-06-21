@@ -1,4 +1,12 @@
-import { Box, Button, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Divider,
+  InputLabel,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { Container } from "@mui/system";
 import React from "react";
 import { useState, useEffect } from "react";
@@ -91,61 +99,68 @@ const Profile = () => {
 
   return (
     <div>
-      <h1>Profile</h1>
-      <h1>Profile</h1>
-      <Box
-        sx={{
-          display: "flex",
-          margin: 2,
-          alignItems: "center",
-          padding: 2,
-        }}
-      >
-        {loading ? (
-          <p>
-            You are currently not logged in, click
-            <a href="http://localhost:3000/Log%20In">here</a>
-            to Log In or
-            <a href="http://localhost:3000/Sign%20Up">here</a>
-            to Sign Up!
-          </p>
-        ) : (
-          <form onSubmit={updateProfile}>
-            {
-              // here idk why i cannot do the session?.user?.email thing but if
-              // cannot then should do if (session) show this div
-              // if session don't exist then show another page saying you have
-              // not logged in and provide link to login?
-            }
-            <div>Email: {session.user.email}</div>
-            <div>
-              <label htmlFor="username">Username: </label>
-              <input
-                id="username"
-                type="text"
-                value={username || ""}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </div>
-            <div>
-              <Button
-                variant="contained"
-                style={{ backgroundColor: "#ffb24d" }}
-                disabled={loading}
-              >
-                Update profile
-              </Button>
-            </div>
-          </form>
-        )}
-        <Button
-          variant="contained"
-          style={{ backgroundColor: "#ffb24d" }}
-          onClick={handleLogout}
-        >
-          Logout
-        </Button>
-      </Box>
+      <Stack>
+        <Box>
+          <Typography variant="h2">Profile</Typography>
+          <Typography variant="h3">Profile</Typography>
+          {loading ? (
+            <p>
+              You are currently not logged in, click
+              <a href="http://localhost:3000/Log%20In">here</a>
+              to Log In or
+              <a href="http://localhost:3000/Sign%20Up">here</a>
+              to Sign Up!
+            </p>
+          ) : (
+            <Box component="form" margin="auto" onSubmit={updateProfile}>
+              <Stack divider={<Divider orientation="horizontal" />} spacing={2}>
+                <Box
+                  display="flex"
+                  gap={2}
+                  alignItems="center"
+                  justifyContent="left"
+                >
+                  <InputLabel>Email: </InputLabel>
+                  <Typography>{session.user.email}</Typography>
+                </Box>
+
+                <Box
+                  display="flex"
+                  gap={2}
+                  alignItems="center"
+                  justifyContent="left"
+                >
+                  <InputLabel>Username: </InputLabel>
+                  <TextField
+                    id="username"
+                    type="text"
+                    value={username || ""}
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                </Box>
+
+                <Button
+                  variant="contained"
+                  style={{ backgroundColor: "#ffb24d" }}
+                  disabled={loading}
+                >
+                  Update profile
+                </Button>
+              </Stack>
+            </Box>
+          )}
+        </Box>
+
+        <Box marginTop={30}>
+          <Button
+            variant="contained"
+            style={{ backgroundColor: "#ffb24d" }}
+            onClick={handleLogout}
+          >
+            Logout
+          </Button>
+        </Box>
+      </Stack>
     </div>
   );
 };

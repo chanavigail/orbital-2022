@@ -7,7 +7,10 @@ import NewInvitation from "./NewInvitation/NewInvitation";
 
 function Invitations() {
   /*const [invitations, setInvitations] = useState([]);
-  // this keeps track of user input, but i alr have this in invitation from so just need to do some parent child props stuff
+  // this keeps track of user input, but i alr have this in invitation
+  from so just need to do some parent child props stuff
+
+  const user = supabase.auth.user();
 
   useEffect(() => {
     fetchInvitations();
@@ -16,21 +19,19 @@ function Invitations() {
   async function fetchInvitations() {
     const { data } = await supabase.from("invitations").select();
     setInvitations(data);
-  }*/
+  }
 
   const addInvitationHandler = (invitationData) => {
-    const { creatorName, date, time, locations } = invitationData;
+    const { creatorName, date, time, location } = invitationData;
 
-    /*async function createInvitation() {
-      await supabase
+    async function createInvitation() {
+      const { data, error } = await supabase
         .from("invitations")
-        .insert([{ creatorName, date, time, locations }])
-        .single();
-      fetchInvitations();
+        .insert([{ id: user.id, date: date, time: time, location: location }]);
     }
 
-    console.log(invitationData);*/
-  };
+    console.log(invitationData);
+  };*/
 
   return (
     <div>
@@ -40,7 +41,7 @@ function Invitations() {
       <CreatedInvitation />
       <CreatedInvitation />
 
-      <NewInvitation onAddInvitation={addInvitationHandler} />
+      <NewInvitation /*onAddInvitation={addInvitationHandler}*/ />
     </div>
   );
 }
