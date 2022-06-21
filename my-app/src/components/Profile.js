@@ -104,7 +104,7 @@ const Profile = () => {
         {loading ? (
           <p>
             You are currently not logged in, click
-            <a href="http://localhost:3000/Sign%20In">here</a>
+            <a href="http://localhost:3000/Log%20In">here</a>
             to Log In or
             <a href="http://localhost:3000/Sign%20Up">here</a>
             to Sign Up!
