@@ -3,10 +3,19 @@ import "./NewInvitation.css";
 
 import InvitationForm from "./InvitationForm";
 
-const NewInvitation = () => {
+const NewInvitation = (props) => {
+  const createInvitationHandler = (enteredInvitationData) => {
+    const invitationData = {
+      ...enteredInvitationData,
+      id: Math.random().toString(),
+    };
+
+    props.onAddInvitation(invitationData);
+  };
+
   return (
     <div>
-      <InvitationForm />
+      <InvitationForm onCreateInvitation={createInvitationHandler} />
     </div>
   );
 };

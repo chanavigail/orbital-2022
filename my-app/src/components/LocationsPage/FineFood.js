@@ -22,7 +22,7 @@ function FineFood() {
 export default FineFood;
 
 function toggleStatus() {
-  const box = document.getElementById("finefood-status");
+  const box = document.getElementById("utownFF-status");
   if (box.style.display === "none") {
     box.style.display = "block";
   } else {

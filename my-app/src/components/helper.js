@@ -1,16 +1,7 @@
-import React, { useState } from "react";
+import { createClient } from "@supabase/supabase-js";
 
-import { supabase } from "../supabase";
+const supabaseUrl = "https://jeuesuvhtlfqygkozslr.supabase.co";
+const supabaseAnonKey =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpldWVzdXZodGxmcXlna296c2xyIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTQ3NjkzMjgsImV4cCI6MTk3MDM0NTMyOH0.po8D4EmWkpkS_yvv9WRQo5-vnC-9ywEPdLFHgn3ez-4";
 
-export async function checkSignUp(username, password) {
-    const [check, setCheck] = useState( 0 );
-    const { data, error } = await supabase
-        .from('users')
-        .select('username', { count: 'exact' })
-        .eq("username", username)
-        .then(users => {
-            setCheck(users[0])
-        })
-        .catch(console.error);
-    return check;
-}
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);

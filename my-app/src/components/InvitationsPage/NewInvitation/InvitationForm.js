@@ -6,15 +6,15 @@ import {
   Select,
   TextField,
   Button,
-  FormControl,
   Typography,
 } from "@mui/material";
+import React, { useState, useEffect } from "react";
 
-import React, { useState } from "react";
+import { supabase } from "../../helper";
 
 import "./InvitationForm.css";
 
-const InvitationForm = () => {
+const InvitationForm = (props) => {
   const [enteredDate, setEnteredDate] = useState("");
   const [enteredTime, setEnteredTime] = useState("");
   const [enteredLocation, setEnteredLocation] = useState("");
@@ -29,16 +29,35 @@ const InvitationForm = () => {
     setEnteredLocation(event.target.value);
   };
 
+  useEffect(() => {
+    fetchInvitations();
+  }, []);
+
+  async function fetchInvitations() {
+    const { data } = await supabase.from("invitations").select();
+  }
+
   const submitHandler = (event) => {
     event.preventDefault();
 
     const invitationData = {
+      creatorName: Math.random().toString(),
       date: new Date(enteredDate),
       time: enteredTime,
       location: enteredLocation,
     };
 
-    console.log(invitationData);
+    const { creatorName, date, time, location } = invitationData;
+
+    async function addInvitation() {
+      await supabase
+        .from("invitations")
+        .insert([{ creatorName, date, time, location }])
+        .single();
+      fetchInvitations();
+    }
+
+    props.onCreateInvitation(invitationData);
 
     setEnteredDate("");
     setEnteredTime("");

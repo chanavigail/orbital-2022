@@ -13,13 +13,13 @@ function MainPage() {
 
   return (
     <div>
-      <div className="mainpage">
-        <h1>Check in/out</h1>
-      </div>
-      <Typography sx={{ gap: 100, mt: 10, ml: 5 }}>
+      <Typography variant="h3" sx={{ mt: 10 }}>
+        Check in/out
+      </Typography>
+      <Typography sx={{ mt: 10, ml: 5 }}>
         Select location to check in/out of!
       </Typography>
-      <Container>
+      <Container sx={{ gap: 2 }}>
         <Select
           sx={{ width: 250 }}
           value={enteredLocation}
