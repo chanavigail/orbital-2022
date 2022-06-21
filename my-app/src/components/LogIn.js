@@ -1,3 +1,11 @@
+import {
+  Box,
+  Button,
+  InputLabel,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 import React from "react";
 import { useState, useEffect } from "react";
 import { supabase } from "./helper";
@@ -26,13 +34,25 @@ function LogIn() {
   };
 
   return (
-    <div>
-      <h1>Log In</h1>
-      <h1>Log In</h1>
-      <div>
-        <form onSubmit={handleLogin}>
-          <label htmlFor="email">Email</label>
-          <input
+    <div alignItems="center" justifyContent="center">
+      <Box
+        component="form"
+        onSubmit={handleLogin}
+        margin="auto"
+        sx={{
+          boxShadow: 2,
+          width: 700,
+          padding: 10,
+          justifyContent: "space-between",
+          alignItems: "center",
+          bgcolor: "#faf2dc",
+        }}
+      >
+        <Stack spacing={3}>
+          <Typography variant="h3" sx={{}}>
+            Log In
+          </Typography>
+          <TextField
             id="email"
             className="inputField"
             type="email"
@@ -41,8 +61,7 @@ function LogIn() {
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <label htmlFor="password">Password</label>
-          <input
+          <TextField
             id="password"
             className="inputField"
             type="password"
@@ -51,11 +70,15 @@ function LogIn() {
             onChange={(e) => setPassword(e.target.value)}
           />
           {loading ? <p>Logging In...</p> : ""}
-          <button className="button block" aria-live="polite">
+          <Button
+            variant="contained"
+            style={{ backgroundColor: "#ffb24d" }}
+            type="submit"
+          >
             Log In
-          </button>
-        </form>
-      </div>
+          </Button>
+        </Stack>
+      </Box>
     </div>
   );
 }
