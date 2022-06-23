@@ -1,4 +1,4 @@
-import { Box, Typography, Button, Stack } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import React from "react";
 import "./CreatedInvitation.css";
 import InvitationDate from "./InvitationDate";
@@ -9,8 +9,7 @@ function CreatedInvitation() {
   const CreatorName = "Name";
   const location = "CAPT DH";
 
-  /* thinking of putting name of creator, location,
-  date, time, and other ppl who accepted the invitation alr? + accept button */
+  /* thinking of adding ppl who accepted the invitation alr */
   return (
     <>
       <Box

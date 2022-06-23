@@ -7,7 +7,6 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { Container } from "@mui/system";
 import React from "react";
 import { useState, useEffect } from "react";
 import { supabase } from "./helper";
@@ -78,6 +77,7 @@ const Profile = () => {
       if (error) {
         throw error;
       }
+      alert("Profile has been updated!");
     } catch (error) {
       alert(error.message);
     } finally {
@@ -93,7 +93,7 @@ const Profile = () => {
     } catch (error) {
       alert(error.error_description || error.message);
     } finally {
-      setLoading(false);
+      setLoading(true);
     }
   };
 
@@ -156,6 +156,7 @@ const Profile = () => {
             variant="contained"
             style={{ backgroundColor: "#ffb24d" }}
             onClick={handleLogout}
+            disabled={loading}
           >
             Logout
           </Button>

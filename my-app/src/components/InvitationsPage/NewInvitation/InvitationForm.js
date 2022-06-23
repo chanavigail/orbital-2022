@@ -31,14 +31,6 @@ const InvitationForm = (props) => {
 
   const user = supabase.auth.user();
 
-  /*useEffect(() => {
-    fetchInvitations();
-  }, []);
-
-  async function fetchInvitations() {
-    const { data } = await supabase.from("invitations").select();
-  }*/
-
   const submitHandler = (event) => {
     event.preventDefault();
 

@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import "./Invitations.css";
-import { supabase } from "../helper";
 import CreatedInvitation from "./CreatedInvitation/CreatedInvitation";
 import NewInvitation from "./NewInvitation/NewInvitation";
 
@@ -32,6 +31,14 @@ function Invitations() {
 
     console.log(invitationData);
   };*/
+
+  /*useEffect(() => {
+    fetchInvitations();
+  }, []);
+
+  async function fetchInvitations() {
+    const { data } = await supabase.from("invitations").select();
+  }*/
 
   return (
     <div>
