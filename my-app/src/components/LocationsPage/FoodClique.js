@@ -31,7 +31,7 @@ function FoodClique() {
         className="loc"
       />
       <p id="utownFC-status" className="status">
-        Currently there's <strong>{vol} {personOrPeople()}</strong> in UTOWN Food Clique
+        Currently there's <strong>{getVol()} {personOrPeople()}</strong> in UTOWN Food Clique
       </p>
     </div>
   );
