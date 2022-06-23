@@ -1,6 +1,18 @@
 import React from "react";
+import supabase from "../helper";
 
 function CaptDH() {
+  const [ vol, setVol ] = React.useState(0)
+
+  async function getVol() {
+    const { data: num, error } = await supabase
+      .from("locations")
+      .select("current_vol")
+      .match({name: "utownff"})
+      .then( data => setVol(data));
+    return vol;
+  }
+  
   return (
     <div>
       <div>
@@ -14,7 +26,7 @@ function CaptDH() {
           className="loc"
         />
         <p id="captdh-status" className="status">
-          Currently there's <strong>0 people</strong> in CAPT DH
+          Currently there's <strong>{vol} people</strong> in CAPT DH
         </p>
       </div>
     </div>

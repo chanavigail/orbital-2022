@@ -1,6 +1,18 @@
 import React from "react";
+import { supabase } from "../helper";
 
 function FineFood() {
+  const [ vol, setVol ] = React.useState(0)
+
+  async function getVol() {
+    const { data: num, error } = await supabase
+      .from("locations")
+      .select("current_vol")
+      .match({name: "utownff"})
+      .then( data => setVol(data));
+    return vol;
+  }
+
   return (
     <div>
       <img
@@ -13,7 +25,7 @@ function FineFood() {
         className="loc"
       />
       <p id="utownFF-status" className="status">
-        Currently there's <strong>0 people</strong> in UTOWN Fine Food
+        Currently there's <strong>{vol} people</strong> in UTOWN Fine Food
       </p>
     </div>
   );
