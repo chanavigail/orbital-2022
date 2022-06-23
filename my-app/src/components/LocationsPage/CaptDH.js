@@ -1,5 +1,5 @@
 import React from "react";
-import supabase from "../helper";
+import { supabase } from "../helper";
 
 function CaptDH() {
   const [ vol, setVol ] = React.useState(0)
