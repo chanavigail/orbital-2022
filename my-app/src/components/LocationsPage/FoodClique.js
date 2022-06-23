@@ -2,15 +2,21 @@ import React from "react";
 import { supabase } from "../helper";
 
 function FoodClique() {
-  const [ vol, setVol ] = React.useState(0)
 
   async function getVol() {
+    const [ vol, setVol ] = React.useState(0)
     const { data: num, error } = await supabase
       .from("locations")
-      .select("current_vol")
-      .match({name: "utownff"})
-      .then( data => setVol(data));
-    return vol;
+      .select("*")
+      .match({name: "utownff"});
+    return num.pop().current_vol;
+  }
+
+  function personOrPeople() {
+    if (getVol() === 1) {
+      return "person";
+    }
+    return "people"
   }
 
   return (
@@ -25,7 +31,7 @@ function FoodClique() {
         className="loc"
       />
       <p id="utownFC-status" className="status">
-        Currently there's <strong>{vol} people</strong> in UTOWN Food Clique
+        Currently there's <strong>{vol} {personOrPeople()}</strong> in UTOWN Food Clique
       </p>
     </div>
   );
