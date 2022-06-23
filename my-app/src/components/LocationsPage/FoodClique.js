@@ -22,7 +22,7 @@ function FoodClique() {
 export default FoodClique;
 
 function toggleStatus() {
-  const box = document.getElementById("fineclique-status");
+  const box = document.getElementById("utownFC-status");
   if (box.style.display === "none") {
     box.style.display = "block";
   } else {

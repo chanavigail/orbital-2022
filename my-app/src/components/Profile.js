@@ -1,55 +1,169 @@
-import React from 'react';
-import { useNavigate, Link } from "react-router-dom";
-import { supabase } from '../supabase';
-import { checkSignUp } from './helper';
+import {
+  Box,
+  Button,
+  Divider,
+  InputLabel,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
+import React from "react";
+import { useState, useEffect } from "react";
+import { supabase } from "./helper";
 
-export default function Profile() {
-  const [username, setUsername] = React.useState('');
-  const [password, setPassword] = React.useState('');
+const Profile = () => {
+  const [loading, setLoading] = useState(true);
+  const [username, setUsername] = useState(null);
+  const [avatar_url, setAvatarUrl] = useState(null);
+  const [session, setSession] = useState(null);
 
-  async function signUp() {
-    const { data, error } = await supabase
-      .from("users")
-      .insert([
-        { username: username, password: password, current_loc: null }
-      ]);
-    alert("Successful");
-  }
+  useEffect(() => {
+    setSession(supabase.auth.session());
 
-  async function checkFirst() {
-    const check = checkSignUp(username, password);
-    alert(check);
-    check ? signUp() : alert("Username already in use, please choose another username")
-  }
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+  }, []);
+
+  useEffect(() => {
+    console.log(session);
+    if (session) getProfile();
+  }, [session]);
+
+  const getProfile = async () => {
+    try {
+      setLoading(true);
+      const user = supabase.auth.user();
+
+      let { data, error, status } = await supabase
+        .from("profiles")
+        .select(`username, avatar_url`)
+        .eq("id", user.id)
+        .single();
+
+      if (error && status !== 406) {
+        throw error;
+      }
+
+      if (data) {
+        setUsername(data.username);
+        setAvatarUrl(data.avatar_url);
+      }
+    } catch (error) {
+      alert(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const updateProfile = async (e) => {
+    e.preventDefault();
+
+    try {
+      setLoading(true);
+      const user = supabase.auth.user();
+
+      const updates = {
+        id: user.id,
+        username,
+        avatar_url,
+        updated_at: new Date(),
+      };
+
+      let { error } = await supabase.from("profiles").upsert(updates, {
+        returning: "minimal", // Don't return the value after inserting
+      });
+
+      if (error) {
+        throw error;
+      }
+      alert("Profile has been updated!");
+    } catch (error) {
+      alert(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      setLoading(true);
+      const { error } = await supabase.auth.signOut();
+      if (error) throw error;
+    } catch (error) {
+      alert(error.error_description || error.message);
+    } finally {
+      setLoading(true);
+    }
+  };
 
   return (
-    <div className="profile">
-      <h1 className="header">Sign Up</h1>
-      <form onSubmit={checkFirst}>
-        <label htmlFor="username">Username:</label>
-        <input
-          id="username"
-          className="inputField"
-          type="text"
-          placeholder="Your username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <label htmlFor="password">Password:</label>
-        <input
-          id="password"
-          className="inputField"
-          type="password"
-          placeholder="Your password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button className="button block" type='submit'>
-          Register
-        </button>
-      </form>
-      <p className='profile-message'>Already registered? Click here</p>
-    </div>
-  )
-}
+    <div>
+      <Stack>
+        <Box>
+          <Typography variant="h2">Profile</Typography>
+          <Typography variant="h3">Profile</Typography>
+          {loading ? (
+            <p>
+              You are currently not logged in, click
+              <a href="http://localhost:3000/Log%20In">here</a>
+              to Log In or
+              <a href="http://localhost:3000/Sign%20Up">here</a>
+              to Sign Up!
+            </p>
+          ) : (
+            <Box component="form" margin="auto" onSubmit={updateProfile}>
+              <Stack divider={<Divider orientation="horizontal" />} spacing={2}>
+                <Box
+                  display="flex"
+                  gap={2}
+                  alignItems="center"
+                  justifyContent="left"
+                >
+                  <InputLabel>Email: </InputLabel>
+                  <Typography>{session.user.email}</Typography>
+                </Box>
 
+                <Box
+                  display="flex"
+                  gap={2}
+                  alignItems="center"
+                  justifyContent="left"
+                >
+                  <InputLabel>Username: </InputLabel>
+                  <TextField
+                    id="username"
+                    type="text"
+                    value={username || ""}
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                </Box>
+
+                <Button
+                  variant="contained"
+                  style={{ backgroundColor: "#ffb24d" }}
+                  disabled={loading}
+                >
+                  Update profile
+                </Button>
+              </Stack>
+            </Box>
+          )}
+        </Box>
+
+        <Box marginTop={30}>
+          <Button
+            variant="contained"
+            style={{ backgroundColor: "#ffb24d" }}
+            onClick={handleLogout}
+            disabled={loading}
+          >
+            Logout
+          </Button>
+        </Box>
+      </Stack>
+    </div>
+  );
+};
+
+export default Profile;

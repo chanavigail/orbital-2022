@@ -25,12 +25,6 @@ body {
   background-color: ivory;
 }
 
-/* trying to remove this and put padding-top instead to prevent overlap*/
-/*h1 {
-  position: relative;
-  top: 150px;
-}*/
-
 #checkin-form {
   position: relative;
   top: 180px;

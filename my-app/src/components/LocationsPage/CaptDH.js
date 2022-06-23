@@ -3,7 +3,7 @@ import React from "react";
 function CaptDH() {
   return (
     <div>
-      <div id="locations">
+      <div>
         <img
           src={require("../../images/captdh.jpeg")}
           width="250"

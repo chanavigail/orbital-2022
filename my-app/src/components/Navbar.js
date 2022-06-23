@@ -20,7 +20,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 
 const pages = ["Home", "Locations", "Friends", "Invitations"];
-const settings = ["Profile", "Logout"];
+const settings = ["Profile", "Sign Up", "Log In"];
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -94,19 +94,16 @@ const Navbar = () => {
 
           <Box
             sx={{
-              mr: 2,
               display: {
                 sm: "block",
                 md: "none",
-                marginLeft: "auto",
-                marginRight: "auto",
-                backgroundColor: "pink",
+                flexGrow: 1,
               },
             }}
           >
             <img src={logo} width="273" height="50" alt="DineTogether logo" />
           </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box sx={{ ml: 2, flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
                 key={page}
@@ -116,7 +113,8 @@ const Navbar = () => {
                   display: "block",
                   // only bold on click?
                   // fontWeight: "fontWeightBold",
-                  fontSize: 15,
+                  fontSize: 17,
+                  mr: 1,
                 }}
               >
                 <Link
@@ -132,7 +130,7 @@ const Navbar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar />
               </IconButton>
             </Tooltip>
             <Menu

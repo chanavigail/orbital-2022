@@ -8,6 +8,8 @@ import Locations from "./components/LocationsPage/Locations";
 import Friends from "./components/Friends";
 import Profile from "./components/Profile";
 import Invitations from "./components/InvitationsPage/Invitations";
+import SignUp from "./components/SignUp";
+import LogIn from "./components/LogIn";
 
 import "./index.css";
 
@@ -20,7 +22,9 @@ export default function App() {
         <Route path="/Locations" element={<Locations />} />
         <Route path="/Friends" element={<Friends />} />
         <Route path="/Invitations" element={<Invitations />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/Profile" element={<Profile />} />
+        <Route path="/Sign%20Up" element={<SignUp />} />
+        <Route path="/Log%20In" element={<LogIn />} />
       </Routes>
     </div>
   );
