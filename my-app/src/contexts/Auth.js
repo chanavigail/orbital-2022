@@ -1,3 +1,4 @@
+import { Button, InputLabel, Stack, TextField } from "@mui/material";
 import React from "react";
 import { useState, useEffect } from "react";
 import { supabase } from "../components/helper";
@@ -68,10 +69,10 @@ export default function Auth() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleLogin}>
-        <label htmlFor="email">Email</label>
-        <input
+    <Stack spacing={3} component="form" onSubmit={handleLogin}>
+      <Stack direction="row" spacing={7} alignItems="center">
+        <InputLabel>Email</InputLabel>
+        <TextField
           id="email"
           className="inputField"
           type="email"
@@ -79,9 +80,10 @@ export default function Auth() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-
-        <label htmlFor="password">Password</label>
-        <input
+      </Stack>
+      <Stack direction="row" spacing={3} alignItems="center">
+        <InputLabel htmlFor="password">Password</InputLabel>
+        <TextField
           id="password"
           className="inputField"
           type="password"
@@ -89,11 +91,16 @@ export default function Auth() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        {loading ? <p>Loading</p> : ""}
-        <button className="button block" aria-live="polite">
-          Sign Up
-        </button>
-      </form>
-    </div>
+      </Stack>
+
+      <Button
+        variant="contained"
+        style={{ backgroundColor: "#ffb24d" }}
+        type="submit"
+        sx={{ display: "inline" }}
+      >
+        Sign Up
+      </Button>
+    </Stack>
   );
 }
