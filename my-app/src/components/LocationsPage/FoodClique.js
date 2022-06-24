@@ -7,9 +7,10 @@ function FoodClique() {
     const [ vol, setVol ] = React.useState(0)
     const { data: num, error } = await supabase
       .from("locations")
-      .select("*")
-      .match({name: "utownff"});
-    return num.pop().current_vol;
+      .select("current_vol")
+      .match({name: "utownff"})
+      .then( data => {setVol(num)});
+    return vol;
   }
 
   function personOrPeople() {
