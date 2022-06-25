@@ -1,4 +1,11 @@
-import { Box, Button, Stack, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 import React from "react";
 import { useState, useEffect } from "react";
 import { supabase } from "./helper";
@@ -27,7 +34,14 @@ function LogIn() {
   };
 
   return (
-    <div alignItems="center" justifyContent="center">
+    <Container
+      style={{
+        position: "absolute",
+        left: "50%",
+        top: "50%",
+        transform: "translate(-50%, -50%)",
+      }}
+    >
       <Box
         component="form"
         onSubmit={handleLogin}
@@ -62,7 +76,7 @@ function LogIn() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          {loading ? <p>Logging In...</p> : ""}
+          {loading ? <Typography variant="p">Logging In...</Typography> : ""}
           <Button
             variant="contained"
             style={{ backgroundColor: "#ffb24d" }}
@@ -72,7 +86,7 @@ function LogIn() {
           </Button>
         </Stack>
       </Box>
-    </div>
+    </Container>
   );
 }
 

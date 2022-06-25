@@ -1,19 +1,22 @@
 import React from "react";
 
-import "./Locations.css";
-
 import CaptDH from "./CaptDH";
 import FineFood from "./FineFood";
 import FoodClique from "./FoodClique";
+import { Stack, Typography } from "@mui/material";
 
 function Locations() {
   return (
-    <div className="locations">
-      <h1>All locations</h1>
-      <CaptDH />
-      <FineFood />
-      <FoodClique />
-    </div>
+    <Stack spacing={5} sx={{ ml: 2, mr: 2 }}>
+      <Typography variant="h3" sx={{ mt: 10 }}>
+        All Locations
+      </Typography>
+      <Stack>
+        <CaptDH />
+        <FineFood />
+        <FoodClique />
+      </Stack>
+    </Stack>
   );
 }
 

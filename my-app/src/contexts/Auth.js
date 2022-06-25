@@ -23,7 +23,6 @@ export default function Auth() {
   }, []);
 
   useEffect(() => {
-    console.log(session);
     if (session) getProfile();
   }, [session]);
 
