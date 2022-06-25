@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import "./Navbar.css";
 import logo from "../images/logo.png";
 
 import {
@@ -25,6 +24,8 @@ const settings = ["Profile", "Sign Up", "Log In"];
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  // this doesn't work...
+  // const [trigger, setTrigger] = useState(false);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -35,6 +36,7 @@ const Navbar = () => {
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+    // setTrigger(true);
   };
 
   const handleCloseUserMenu = () => {
@@ -112,7 +114,7 @@ const Navbar = () => {
                   my: 2,
                   display: "block",
                   // only bold on click?
-                  // fontWeight: "fontWeightBold",
+                  // fontWeight: trigger ? "fontWeightBold" : "regular",
                   fontSize: 17,
                   mr: 1,
                 }}

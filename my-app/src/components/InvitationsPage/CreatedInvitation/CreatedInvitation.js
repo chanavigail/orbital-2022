@@ -3,9 +3,9 @@ import React from "react";
 import "./CreatedInvitation.css";
 import InvitationDate from "./InvitationDate";
 
-function CreatedInvitation() {
+function CreatedInvitation(props) {
   const date = new Date(2022, 5, 1);
-  const time = "7pm";
+  const time = props.time;
   const CreatorName = "Name";
   const location = "CAPT DH";
 
@@ -17,17 +17,16 @@ function CreatedInvitation() {
           display: "flex",
           height: 70,
           boxShadow: 2,
-          margin: 2,
           justifyContent: "space-between",
           alignItems: "center",
           padding: 2,
           bgcolor: "#faf2dc",
         }}
       >
-        <Typography>{CreatorName}</Typography>
-        <Typography>{location}</Typography>
-        <InvitationDate date={date} />
-        <Typography>{time}</Typography>
+        <Typography>{props.name}</Typography>
+        <Typography>{props.location}</Typography>
+        <Typography>{props.date} </Typography>
+        <Typography>{props.time}</Typography>
         <Button variant="contained" style={{ backgroundColor: "#ffb24d" }}>
           Accept
         </Button>

@@ -1,14 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-import "./Invitations.css";
 import CreatedInvitation from "./CreatedInvitation/CreatedInvitation";
 import NewInvitation from "./NewInvitation/NewInvitation";
+import { Stack, Typography } from "@mui/material";
+import { supabase } from "../helper";
 
 function Invitations() {
-  /*const [invitations, setInvitations] = useState([]);
-  // this keeps track of user input, but i alr have this in invitation
-  from so just need to do some parent child props stuff
-
+  const [invitations, setInvitations] = useState([]);
   const user = supabase.auth.user();
 
   useEffect(() => {
@@ -16,40 +14,34 @@ function Invitations() {
   }, []);
 
   async function fetchInvitations() {
-    const { data } = await supabase.from("invitations").select();
-    setInvitations(data);
+    const { data, error } = await supabase.from("invitations").select();
+
+    if (error) {
+      alert(error.message);
+    }
+    if (data) {
+      setInvitations(data);
+    }
   }
 
-  const addInvitationHandler = (invitationData) => {
-    const { creatorName, date, time, location } = invitationData;
-
-    async function createInvitation() {
-      const { data, error } = await supabase
-        .from("invitations")
-        .insert([{ id: user.id, date: date, time: time, location: location }]);
-    }
-
-    console.log(invitationData);
-  };*/
-
-  /*useEffect(() => {
-    fetchInvitations();
-  }, []);
-
-  async function fetchInvitations() {
-    const { data } = await supabase.from("invitations").select();
-  }*/
-
   return (
-    <div>
-      <h1>Invitations</h1>
-      <h1>Invitations</h1>
+    <Stack spacing={5} sx={{ ml: 2, mr: 2 }}>
+      <Typography variant="h3" sx={{ mt: 10 }}>
+        Invitations
+      </Typography>
+      <NewInvitation />
 
-      <CreatedInvitation />
-      <CreatedInvitation />
-
-      <NewInvitation /*onAddInvitation={addInvitationHandler}*/ />
-    </div>
+      <Stack spacing={2}>
+        {invitations.map((invitation) => (
+          <CreatedInvitation
+            date={invitation.date}
+            time={invitation.time}
+            user={invitation.id}
+            location={invitation.location}
+          />
+        ))}
+      </Stack>
+    </Stack>
   );
 }
 

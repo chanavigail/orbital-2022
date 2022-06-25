@@ -9,7 +9,6 @@ import {
   Typography,
 } from "@mui/material";
 
-import "./MainPage.css";
 import { supabase } from "./helper";
 
 function MainPage() {

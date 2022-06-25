@@ -14,7 +14,7 @@ import { supabase } from "../../helper";
 
 import "./InvitationForm.css";
 
-const InvitationForm = (props) => {
+const InvitationForm = () => {
   const [enteredDate, setEnteredDate] = useState("");
   const [enteredTime, setEnteredTime] = useState("");
   const [enteredLocation, setEnteredLocation] = useState("");
@@ -42,18 +42,14 @@ const InvitationForm = (props) => {
       accepted_people: [],
     };
 
-    console.log(invitationData);
-
     async function createInvitation() {
       const { data, error } = await supabase
         .from("invitations")
         .insert([{ ...invitationData }]);
-      console.log(error);
+      window.location.reload(false);
     }
 
     createInvitation();
-
-    /*props.onCreateInvitation(invitationData);*/
 
     setEnteredDate("");
     setEnteredTime("");
@@ -67,6 +63,7 @@ const InvitationForm = (props) => {
         className="new-invitation__controls"
         component="form"
         style={{ backgroundColor: "#ffda6a" }}
+        align="center"
       >
         <Typography align="center">
           Input details to create new invitation!
