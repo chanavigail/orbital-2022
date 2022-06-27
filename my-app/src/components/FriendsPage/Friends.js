@@ -1,6 +1,7 @@
 import { Stack, TextField, Typography } from "@mui/material";
 import React from "react";
 
+import AddFriend from "./AddFriend";
 import FriendList from "./FriendList";
 
 function Friends() {
@@ -9,6 +10,7 @@ function Friends() {
       <Typography variant="h3" sx={{ mt: 10 }}>
         Friends
       </Typography>
+      <AddFriend />
       <FriendList />
     </Stack>
   );

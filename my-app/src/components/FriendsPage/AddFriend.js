@@ -3,12 +3,16 @@ import React, { useEffect } from "react";
 import { supabase } from "../helper";
 
 function AddFriend() {
-    const [ adding, setAdding ] = useEffect("");
+    const [ adding, setAdding ] = React.useEffect("");
 
     return (
-        <TextField 
-            className="friend-search"
+        <TextField
+            id="friend-search"
+            className="search"
+            type="text"
             placeholder="input friend's username here"
+            value={adding}
+            onChange={(e) => setAdding(e.target.value)}
         />
     )
 }
