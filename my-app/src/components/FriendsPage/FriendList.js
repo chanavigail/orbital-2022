@@ -19,6 +19,13 @@ function FriendList() {
       </ul>
     </div>;
   
+  for (let i=0; i <= userFriends.length; i++) {
+    const friends_li = document.createElement("li");
+    friends_li.innerHTML = userFriends[i];
+    friends_li.setAttribute("class", "friendslist friends-li")
+    document.getElementById("friends-ul").appendChild(friends_li);
+  }
+
   return component;
 }
 
