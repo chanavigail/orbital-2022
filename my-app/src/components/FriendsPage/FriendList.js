@@ -18,6 +18,8 @@ function FriendList() {
         <li className="friendslist friends-li">{userFriends[0]}</li>
       </ul>
     </div>;
+  
+  return component;
 }
 
 export default FriendList;
