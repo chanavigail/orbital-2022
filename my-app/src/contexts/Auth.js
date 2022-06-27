@@ -33,7 +33,7 @@ export default function Auth() {
       setLoading(true);
       const { error } = await supabase.auth.signUp({ email, password });
       if (error) throw error;
-      alert("Thanks for signing up!");
+      alert("Thanks for signing up! Please go to profile to set a username.");
     } catch (error) {
       alert(error.error_description || error.message);
     } finally {

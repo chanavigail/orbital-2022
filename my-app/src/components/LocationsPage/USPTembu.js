@@ -18,11 +18,11 @@ function USPTembu() {
       alert(error.message);
     }
     for (let i = 0; i < data.length; i++) {
-      if (data.at(i).name == "TEMBU DH") {
-        setTembusuCapacity(data.at(i).current_vol);
+      if (data[i].name == "TEMBUSU DH") {
+        setTembusuCapacity(data[i].current_vol);
       }
-      if (data.at(i).name == "USP DH") {
-        setUspCapacity(data.at(i).current_vol);
+      if (data[i].name == "USP DH") {
+        setUspCapacity(data[i].current_vol);
       }
     }
   }

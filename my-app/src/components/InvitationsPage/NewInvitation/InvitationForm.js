@@ -8,7 +8,7 @@ import {
   Button,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { supabase } from "../../helper";
 
@@ -18,6 +18,7 @@ const InvitationForm = () => {
   const [enteredDate, setEnteredDate] = useState("");
   const [enteredTime, setEnteredTime] = useState("");
   const [enteredLocation, setEnteredLocation] = useState("");
+  const [username, setUsername] = useState(null);
 
   const dateChangeHandler = (event) => {
     setEnteredDate(event.target.value);
@@ -31,6 +32,26 @@ const InvitationForm = () => {
 
   const user = supabase.auth.user();
 
+  useEffect(() => {
+    getUsername();
+  }, []);
+
+  const getUsername = async () => {
+    let { data, error, status } = await supabase
+      .from("profiles")
+      .select(`username`)
+      .eq("id", user.id)
+      .single();
+
+    if (error && status !== 406) {
+      throw error;
+    }
+
+    if (data) {
+      setUsername(data.username);
+    }
+  };
+
   const submitHandler = (event) => {
     event.preventDefault();
 
@@ -40,6 +61,7 @@ const InvitationForm = () => {
       time: enteredTime,
       location: enteredLocation,
       accepted_people: [],
+      username: username,
     };
 
     async function createInvitation() {

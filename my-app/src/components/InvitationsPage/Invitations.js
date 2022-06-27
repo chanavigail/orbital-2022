@@ -36,8 +36,11 @@ function Invitations() {
           <CreatedInvitation
             date={invitation.date}
             time={invitation.time}
-            user={invitation.id}
+            name={invitation.username}
             location={invitation.location}
+            invitationNum={invitation.invitation_id}
+            accepted_people={invitation.accepted_people}
+            id={invitation.id}
           />
         ))}
       </Stack>
