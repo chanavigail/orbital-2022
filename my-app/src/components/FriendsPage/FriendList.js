@@ -16,7 +16,7 @@ function FriendList() {
       const { data: userFriends, error } = await supabase
         .from("friends")
         .select("*")
-        .match({ user_id: user.id })
+        .match({ user_id: "c2bee42e-7da4-431b-b3c5-4226ece08234" })
       if (error) throw error;
       setFriends(userFriends)
     }

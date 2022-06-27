@@ -53,7 +53,7 @@
   }
 
   .friends-li {
-    width: 100%;
+    width: 80%;
     flex-basis: 50%;
     flex-grow: 0;
     margin: 1rem;
@@ -63,4 +63,5 @@
     justify-content: center;
     align-items: center;
     gap: 1rem;
+    background-color: rgb(248, 237, 205);
   }
