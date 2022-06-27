@@ -7,6 +7,7 @@ function Friends() {
       <Typography variant="h3" sx={{ mt: 10 }}>
         Friends
       </Typography>
+      <FriendList />
     </Stack>
   );
 }
