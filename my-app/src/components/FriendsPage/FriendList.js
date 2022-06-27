@@ -22,17 +22,17 @@ function FriendList() {
   const component = (
     <div className="friendslist">
       <ul className="friendslist" id="friends-ul">
-        <li className="friendslist friends-li">{friends[0]}</li>
+        <li className="friendslist friends-li">{friends.at(0)}</li>
       </ul>
     </div>
   );
   
-  // for (let i=0; i <= friends.length; i++) {
-  //   const friends_li = document.createElement("li");
-  //   friends_li.innerHTML = friends[i];
+  for (let i=0; i <= friends.length; i++) {
+    const friends_li = document.createElement("li");
+    friends_li.innerHTML = friends[i];
   //   friends_li.setAttribute("class", "friendslist friends-li")
-  //   document.getElementById("friends-ul").appendChild(friends_li);
-  // }
+    document.getElementById("friends-ul").appendChild(friends_li);
+  }
 
   return component;
 }
