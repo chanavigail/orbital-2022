@@ -1,9 +1,11 @@
-import { Stack, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { Container } from "@mui/system";
+import { Stack, Typography } from "@mui/material";
 import { supabase } from "../helper";
 
-function FoodClique() {
-  const [fcutownCapacity, setFCutownCapacity] = useState("");
+function USPTembu() {
+  const [tembusuCapacity, setTembusuCapacity] = useState("");
+  const [uspCapacity, setUspCapacity] = useState("");
 
   useEffect(() => {
     fetchCapacity();
@@ -16,8 +18,11 @@ function FoodClique() {
       alert(error.message);
     }
     for (let i = 0; i < data.length; i++) {
-      if (data.at(i).name == "UTOWN FC") {
-        setFCutownCapacity(data.at(i).current_vol);
+      if (data.at(i).name == "TEMBU DH") {
+        setTembusuCapacity(data.at(i).current_vol);
+      }
+      if (data.at(i).name == "USP DH") {
+        setUspCapacity(data.at(i).current_vol);
       }
     }
   }
@@ -26,22 +31,25 @@ function FoodClique() {
     <Stack direction="row" spacing={2}>
       <Stack alignItems="center">
         <img
-          src={require("../../images/utownFC.jpg")}
+          src={require("../../images/tembudh.jpg")}
           width="250"
           height="250"
         />
         <Typography variant="subtitle1" fontWeight="bold">
-          Food Clique (UTOWN)
+          USP/Tembusu Dining Hall
         </Typography>
       </Stack>
 
       <Stack spacing={3} justifyContent="center">
         <Typography variant="subtitle1">
-          No. of People at Food Clique in UTOWN: {fcutownCapacity}
+          No. of People at USP side: {uspCapacity}
+        </Typography>
+        <Typography variant="subtitle1">
+          No. of People at Tembusu side: {tembusuCapacity}
         </Typography>
       </Stack>
     </Stack>
   );
 }
 
-export default FoodClique;
+export default USPTembu;

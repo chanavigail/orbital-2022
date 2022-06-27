@@ -1,4 +1,4 @@
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography, Button, Stack } from "@mui/material";
 import React from "react";
 import "./CreatedInvitation.css";
 import InvitationDate from "./InvitationDate";
@@ -25,8 +25,10 @@ function CreatedInvitation(props) {
       >
         <Typography>{props.name}</Typography>
         <Typography>{props.location}</Typography>
-        <Typography>{props.date} </Typography>
-        <Typography>{props.time}</Typography>
+        <Stack alignItems="center">
+          <Typography>{props.date} </Typography>
+          <Typography>{props.time}</Typography>
+        </Stack>
         <Button variant="contained" style={{ backgroundColor: "#ffb24d" }}>
           Accept
         </Button>

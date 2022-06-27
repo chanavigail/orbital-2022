@@ -17,6 +17,8 @@ function MainPage() {
     setEnteredLocation(event.target.value);
   };
 
+  const user = supabase.auth.user();
+
   async function handleCheckIn() {
     const { data } = await supabase
       .from("locations")
@@ -27,6 +29,18 @@ function MainPage() {
       name: enteredLocation,
       current_vol: data.pop().current_vol + 1,
     });
+
+    const updates = {
+      id: user.id,
+      current_loc: enteredLocation,
+      updated_at: new Date(),
+    };
+
+    const { error1 } = await supabase.from("profiles").upsert(updates, {
+      returning: "minimal",
+    });
+    if (error1) throw error;
+    alert("You have successsfully checked in to " + enteredLocation + "!");
   }
 
   async function handleCheckOut() {
@@ -39,6 +53,18 @@ function MainPage() {
       name: enteredLocation,
       current_vol: data.pop().current_vol - 1,
     });
+
+    const updates = {
+      id: user.id,
+      current_loc: enteredLocation,
+      updated_at: new Date(),
+    };
+
+    const { error1 } = await supabase.from("profiles").upsert(updates, {
+      returning: "minimal",
+    });
+    if (error1) throw error;
+    alert("You have successsfully checked out of " + enteredLocation + "!");
   }
 
   return (
@@ -60,11 +86,12 @@ function MainPage() {
             value={enteredLocation}
             onChange={locationChangeHandler}
           >
-            <MenuItem value="captdh">CAPT DH</MenuItem>
-            <MenuItem value="tembudh">Tembusu DH</MenuItem>
-            <MenuItem value="rc4dh">RC4 DH</MenuItem>
-            <MenuItem value="utownfc">UTOWN Food Clique</MenuItem>
-            <MenuItem value="utownff">UTOWN Fine Food</MenuItem>
+            <MenuItem value="CAPT DH">CAPT DH</MenuItem>
+            <MenuItem value="TEMBUSU DH">Tembusu DH</MenuItem>
+            <MenuItem value="RC4 DH">RC4 DH</MenuItem>
+            <MenuItem value="USP DH">USP DH</MenuItem>
+            <MenuItem value="UTOWN FC">UTOWN Food Clique</MenuItem>
+            <MenuItem value="UTOWN FF">UTOWN Fine Food</MenuItem>
           </Select>
           <Button
             style={{ backgroundColor: "#ffb24d", color: "black" }}
