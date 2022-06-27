@@ -1,6 +1,25 @@
 import React from "react";
+import { supabase } from "../helper";
 
 function FoodClique() {
+
+  async function getVol() {
+    const [ vol, setVol ] = React.useState(0)
+    const { data: num, error } = await supabase
+      .from("locations")
+      .select("current_vol")
+      .match({name: "utownff"})
+      .then( data => {setVol(num)});
+    return vol;
+  }
+
+  function personOrPeople() {
+    if (getVol() === 1) {
+      return "person";
+    }
+    return "people"
+  }
+
   return (
     <div>
       <img
@@ -13,7 +32,7 @@ function FoodClique() {
         className="loc"
       />
       <p id="utownFC-status" className="status">
-        Currently there's <strong>0 people</strong> in UTOWN Food Clique
+        Currently there's <strong>{getVol()} {personOrPeople()}</strong> in UTOWN Food Clique
       </p>
     </div>
   );

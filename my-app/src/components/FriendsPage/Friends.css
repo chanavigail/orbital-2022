@@ -1,0 +1,11 @@
+.friends {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5rem;
+}
+
+.friends h1 {
+  font-size: xx-large;
+  position: fixed;
+  padding-left: 1.5rem;
+}
