@@ -9,8 +9,6 @@ function Friends() {
       <Typography variant="h3" sx={{ mt: 10 }}>
         Friends
       </Typography>
-      <TextField className="friend-search">
-      </TextField>
       <FriendList />
     </Stack>
   );
