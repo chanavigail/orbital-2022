@@ -2,8 +2,9 @@ import { Stack, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { supabase } from "../helper";
 
-function FoodClique() {
-  const [fcutownCapacity, setFCutownCapacity] = useState("");
+function CaptRC4DH() {
+  const [captCapacity, setCaptCapacity] = useState("");
+  const [rc4Capacity, setRC4Capacity] = useState("");
 
   useEffect(() => {
     fetchCapacity();
@@ -16,8 +17,11 @@ function FoodClique() {
       alert(error.message);
     }
     for (let i = 0; i < data.length; i++) {
-      if (data.at(i).name == "UTOWN FC") {
-        setFCutownCapacity(data.at(i).current_vol);
+      if (data.at(i).name == "CAPT DH") {
+        setCaptCapacity(data.at(i).current_vol);
+      }
+      if (data.at(i).name == "RC4 DH") {
+        setRC4Capacity(data.at(i).current_vol);
       }
     }
   }
@@ -26,22 +30,25 @@ function FoodClique() {
     <Stack direction="row" spacing={2}>
       <Stack alignItems="center">
         <img
-          src={require("../../images/utownFC.jpg")}
+          src={require("../../images/captdh.jpeg")}
           width="250"
           height="250"
         />
         <Typography variant="subtitle1" fontWeight="bold">
-          Food Clique (UTOWN)
+          CAPT/RC4 Dining Hall
         </Typography>
       </Stack>
 
       <Stack spacing={3} justifyContent="center">
         <Typography variant="subtitle1">
-          No. of People at Food Clique in UTOWN: {fcutownCapacity}
+          No. of People at CAPT side: {captCapacity}
+        </Typography>
+        <Typography variant="subtitle1">
+          No. of People at RC4 side: {rc4Capacity}
         </Typography>
       </Stack>
     </Stack>
   );
 }
 
-export default FoodClique;
+export default CaptRC4DH;

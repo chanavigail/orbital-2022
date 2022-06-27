@@ -2,9 +2,8 @@ body {
   background-color: ivory;
 }
 
-#captdh {
+/*#captdh {
   position: relative;
-  top: 200px;
   display: block;
 }
 
@@ -18,7 +17,6 @@ body {
   width: 250;
   overflow-wrap: break-word;
   position: relative;
-  left: 300px;
 }
 
 .status {
@@ -27,7 +25,6 @@ body {
 
 #utownFF {
   position: relative;
-  top: 200px;
   display: block;
 }
 
@@ -41,12 +38,10 @@ body {
   width: 250;
   overflow-wrap: break-word;
   position: relative;
-  left: 300px;
 }
 
 #utownFC {
   position: relative;
-  top: 200px;
   display: block;
 }
 
@@ -60,5 +55,5 @@ body {
   width: 250;
   overflow-wrap: break-word;
   position: relative;
-  left: 300px;
 }
+*/
