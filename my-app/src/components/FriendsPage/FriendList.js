@@ -31,7 +31,7 @@ function FriendList() {
     const friends_li = document.createElement("li");
     friends_li.innerHTML = friends[i];
   //   friends_li.setAttribute("class", "friendslist friends-li")
-    document.getElementById("friends-ul").appendChild(friends_li);
+    // document.getElementById("friends-ul").appendChild(friends_li);
   }
 
   return component;
