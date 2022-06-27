@@ -22,7 +22,7 @@ function FriendList() {
   const component = (
     <div className="friendslist">
       <ul className="friendslist" id="friends-ul">
-        <li className="friendslist friends-li">{friends.at(0)}</li>
+        <li className="friendslist friends-li">{friends[0]}</li>
       </ul>
     </div>
   );
