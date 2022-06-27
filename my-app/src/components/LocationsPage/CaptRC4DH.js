@@ -17,11 +17,11 @@ function CaptRC4DH() {
       alert(error.message);
     }
     for (let i = 0; i < data.length; i++) {
-      if (data.at(i).name == "CAPT DH") {
-        setCaptCapacity(data.at(i).current_vol);
+      if (data[i].name == "CAPT DH") {
+        setCaptCapacity(data[i].current_vol);
       }
-      if (data.at(i).name == "RC4 DH") {
-        setRC4Capacity(data.at(i).current_vol);
+      if (data[i].name == "RC4 DH") {
+        setRC4Capacity(data[i].current_vol);
       }
     }
   }

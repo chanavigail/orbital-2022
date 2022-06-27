@@ -38,6 +38,9 @@ function Invitations() {
             time={invitation.time}
             name={invitation.username}
             location={invitation.location}
+            invitationNum={invitation.invitation_id}
+            accepted_people={invitation.accepted_people}
+            id={invitation.id}
           />
         ))}
       </Stack>

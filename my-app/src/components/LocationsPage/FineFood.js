@@ -16,8 +16,8 @@ function FineFood() {
       alert(error.message);
     }
     for (let i = 0; i < data.length; i++) {
-      if (data.at(i).name == "UTOWN FF") {
-        setFFutownCapacity(data.at(i).current_vol);
+      if (data[i].name == "UTOWN FF") {
+        setFFutownCapacity(data[i].current_vol);
       }
     }
   }
