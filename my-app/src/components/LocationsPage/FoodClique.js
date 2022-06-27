@@ -16,8 +16,8 @@ function FoodClique() {
       alert(error.message);
     }
     for (let i = 0; i < data.length; i++) {
-      if (data.at(i).name == "UTOWN FC") {
-        setFCutownCapacity(data.at(i).current_vol);
+      if (data[i].name == "UTOWN FC") {
+        setFCutownCapacity(data[i].current_vol);
       }
     }
   }
