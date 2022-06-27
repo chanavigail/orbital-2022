@@ -36,7 +36,7 @@ function Invitations() {
           <CreatedInvitation
             date={invitation.date}
             time={invitation.time}
-            user={invitation.id}
+            name={invitation.username}
             location={invitation.location}
           />
         ))}

@@ -5,7 +5,6 @@ import FineFood from "./FineFood";
 import FoodClique from "./FoodClique";
 import { Grid, Stack, Typography } from "@mui/material";
 import USPTembu from "./USPTembu";
-import { Box, Container } from "@mui/system";
 
 function Locations() {
   return (

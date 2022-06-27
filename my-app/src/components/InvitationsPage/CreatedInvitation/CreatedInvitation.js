@@ -4,11 +4,6 @@ import "./CreatedInvitation.css";
 import InvitationDate from "./InvitationDate";
 
 function CreatedInvitation(props) {
-  const date = new Date(2022, 5, 1);
-  const time = props.time;
-  const CreatorName = "Name";
-  const location = "CAPT DH";
-
   /* thinking of adding ppl who accepted the invitation alr */
   return (
     <>
