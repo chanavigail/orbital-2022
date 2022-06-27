@@ -7,6 +7,7 @@ function Friends() {
     <div>
       <div className="friends">
         <h1>Friends</h1>
+        <FriendList />
       </div>
     </div>
   );
