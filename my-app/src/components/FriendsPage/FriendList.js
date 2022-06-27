@@ -7,7 +7,7 @@ function FriendList() {
   const [ friends, setFriends ] = React.useState([]);
   const user = supabase.auth.user();
 
-  const { data: userFriends, error } = await supabase
+  const { data: userFriends, error } = supabase
     .from("friends")
     .select("*")
     .match({ user_id: user.id })
