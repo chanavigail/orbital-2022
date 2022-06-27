@@ -8,7 +8,7 @@ import {
   Button,
   Typography,
 } from "@mui/material";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { supabase } from "../../helper";
 
@@ -70,7 +70,7 @@ const InvitationForm = () => {
         </Typography>
 
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          <Grid item xs={6}>
+          <Grid item md={6}>
             <InputLabel>Date</InputLabel>
             <TextField
               id="date"
@@ -81,7 +81,7 @@ const InvitationForm = () => {
             />
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item md={6}>
             <InputLabel>Time</InputLabel>
             <TextField
               id="time"
@@ -95,22 +95,23 @@ const InvitationForm = () => {
             />
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item md={6}>
             <InputLabel>Location</InputLabel>
             <Select
               sx={{ width: 250 }}
               value={enteredLocation}
               onChange={locationChangeHandler}
             >
-              <MenuItem value="captdh">CAPT DH</MenuItem>
-              <MenuItem value="tembudh">Tembusu DH</MenuItem>
-              <MenuItem value="rc4dh">RC4 DH</MenuItem>
-              <MenuItem value="utownfc">UTOWN Food Clique</MenuItem>
-              <MenuItem value="utownff">UTOWN Fine Food</MenuItem>
+              <MenuItem value="CAPT DH">CAPT DH</MenuItem>
+              <MenuItem value="TEMBUSU DH">Tembusu DH</MenuItem>
+              <MenuItem value="RC4 DH">RC4 DH</MenuItem>
+              <MenuItem value="USP DH">USP DH</MenuItem>
+              <MenuItem value="UTOWN FC">UTOWN Food Clique</MenuItem>
+              <MenuItem value="UTOWN FF">UTOWN Fine Food</MenuItem>
             </Select>
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item md={6} sx={{ alignItems: "center" }}>
             <Button
               variant="contained"
               style={{ backgroundColor: "#ffb24d" }}

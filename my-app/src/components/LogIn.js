@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { supabase } from "./helper";
 
 function LogIn() {
@@ -76,7 +76,11 @@ function LogIn() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          {loading ? <Typography variant="p">Logging In...</Typography> : ""}
+          {loading ? (
+            <Typography variant="subtitle1">Logging In...</Typography>
+          ) : (
+            ""
+          )}
           <Button
             variant="contained"
             style={{ backgroundColor: "#ffb24d" }}
