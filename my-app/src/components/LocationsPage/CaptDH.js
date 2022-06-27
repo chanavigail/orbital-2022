@@ -1,35 +1,29 @@
+import { Button, ButtonBase, Typography } from "@mui/material";
+import { Container } from "@mui/system";
 import React from "react";
 import { supabase } from "../helper";
 
 function CaptDH() {
-  const [ vol, setVol ] = React.useState(0)
+  /*const { data } = await supabase
+    .from("locations")
+    .select("name, current_vol")
+    .match({ name: "captdh" });
+  const current_vol = data.pop().current_vol;*/
 
-  async function getVol() {
-    const { data: num, error } = await supabase
-      .from("locations")
-      .select("current_vol")
-      .match({name: "utownff"})
-      .then( data => setVol(data));
-    return vol;
-  }
-  
   return (
-    <div>
-      <div>
-        <img
-          src={require("../../images/captdh.jpeg")}
-          width="250"
-          height="250"
-          alt="CAPT Dining Hall"
-          id="captdh"
-          onClick={toggleStatus}
-          className="loc"
-        />
-        <p id="captdh-status" className="status">
-          Currently there's <strong>{vol} people</strong> in CAPT DH
-        </p>
-      </div>
-    </div>
+    <Container>
+      <img
+        src={require("../../images/captdh.jpeg")}
+        width="250"
+        height="250"
+        alt="CAPT Dining Hall"
+        id="captdh"
+        onClick={toggleStatus}
+      />
+      <Typography id="captdh-status" className="status">
+        There are currently <strong>0 people</strong> in CAPT DH
+      </Typography>
+    </Container>
   );
 }
 

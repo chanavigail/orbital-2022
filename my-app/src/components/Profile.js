@@ -26,7 +26,6 @@ const Profile = () => {
   }, []);
 
   useEffect(() => {
-    console.log(session);
     if (session) getProfile();
   }, [session]);
 
@@ -101,16 +100,17 @@ const Profile = () => {
     <div>
       <Stack>
         <Box>
-          <Typography variant="h2">Profile</Typography>
-          <Typography variant="h3">Profile</Typography>
+          <Typography variant="h3" sx={{ mt: 10 }}>
+            Profile
+          </Typography>
           {loading ? (
-            <p>
-              You are currently not logged in, click
+            <Typography variant="h6">
+              You are currently not logged in, click&nbsp;
               <a href="http://localhost:3000/Log%20In">here</a>
-              to Log In or
+              &nbsp;to Log In or&nbsp;
               <a href="http://localhost:3000/Sign%20Up">here</a>
-              to Sign Up!
-            </p>
+              &nbsp;to Sign Up!
+            </Typography>
           ) : (
             <Box component="form" margin="auto" onSubmit={updateProfile}>
               <Stack divider={<Divider orientation="horizontal" />} spacing={2}>
@@ -142,7 +142,6 @@ const Profile = () => {
                 <Button
                   variant="contained"
                   style={{ backgroundColor: "#ffb24d" }}
-                  disabled={loading}
                 >
                   Update profile
                 </Button>
@@ -151,16 +150,20 @@ const Profile = () => {
           )}
         </Box>
 
-        <Box marginTop={30}>
-          <Button
-            variant="contained"
-            style={{ backgroundColor: "#ffb24d" }}
-            onClick={handleLogout}
-            disabled={loading}
-          >
-            Logout
-          </Button>
-        </Box>
+        {loading ? (
+          ""
+        ) : (
+          <Box marginTop={30}>
+            <Button
+              variant="contained"
+              style={{ backgroundColor: "#ffb24d" }}
+              onClick={handleLogout}
+              disabled={loading}
+            >
+              Logout
+            </Button>
+          </Box>
+        )}
       </Stack>
     </div>
   );

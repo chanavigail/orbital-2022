@@ -18,6 +18,7 @@ export default function App() {
     <div className="App">
       <NavBar />
       <Routes>
+        <Route path="/" element={<MainPage />} />
         <Route path="/Home" element={<MainPage />} />
         <Route path="/Locations" element={<Locations />} />
         <Route path="/Friends" element={<Friends />} />
