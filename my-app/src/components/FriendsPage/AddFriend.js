@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
+import { Box, Button, Textfield } from "@mui/material";
 
 import { supabase } from "../helper";
 
 function AddFriend() {
     const [ loading, setLoading ] = React.useState(false);
-    const [ addingUser, setAddingUsername ] = React.useEffect("");
+    const [ addingUsername, setAddingUsername ] = React.useEffect("");
     const [ friendId, setFriendId ] = React.useEffect("");
     const user = supabase.auth.user()
 
@@ -28,7 +29,7 @@ function AddFriend() {
                 friend_id: friendId
             })
           if (error) throw error;
-          alert("You have successsfully added " + adding + " as friend!");
+          alert("You have successsfully added " + addingUsername + " as friend!");
         } catch (error) {
           alert(error.error_description || error.message);
         } finally {
@@ -42,7 +43,7 @@ function AddFriend() {
             onSubmit={handleAdd}
             margin="auto"
         >
-                <TextField
+                <Textfield
                     id="friend-search"
                     className="search"
                     type="text"
