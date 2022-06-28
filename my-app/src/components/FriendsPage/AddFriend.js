@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Box, Button, Textfield } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 
 import { supabase } from "../helper";
 
@@ -43,7 +43,7 @@ function AddFriend() {
             onSubmit={handleAdd}
             margin="auto"
         >
-                <Textfield
+                <TextField
                     id="friend-search"
                     className="search"
                     type="text"
