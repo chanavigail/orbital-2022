@@ -1,6 +1,7 @@
 import { Button, InputLabel, Stack, TextField } from "@mui/material";
 import React from "react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { supabase } from "../components/helper";
 
 // const cors = require("cors");
@@ -13,6 +14,7 @@ export default function Auth() {
   const [avatar_url, setAvatarUrl] = useState(null);
   const [password, setPassword] = useState(null);
   const [session, setSession] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setSession(supabase.auth.session());
@@ -33,7 +35,8 @@ export default function Auth() {
       setLoading(true);
       const { error } = await supabase.auth.signUp({ email, password });
       if (error) throw error;
-      alert("Thanks for signing up! Please go to profile to set a username.");
+      alert("Thanks for signing up!");
+      navigate("/Profile");
     } catch (error) {
       alert(error.error_description || error.message);
     } finally {
