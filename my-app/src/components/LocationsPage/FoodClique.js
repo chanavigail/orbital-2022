@@ -10,15 +10,13 @@ function FoodClique() {
   }, []);
 
   async function fetchCapacity() {
-    const { data, error } = await supabase.from("locations").select();
+    const { data, error } = await supabase.rpc("count_num_utownfc");
 
     if (error) {
       alert(error.message);
     }
-    for (let i = 0; i < data.length; i++) {
-      if (data[i].name == "UTOWN FC") {
-        setFCutownCapacity(data[i].current_vol);
-      }
+    if (data) {
+      setFCutownCapacity(data);
     }
   }
 
@@ -37,7 +35,8 @@ function FoodClique() {
 
       <Stack spacing={3} justifyContent="center">
         <Typography variant="subtitle1">
-          No. of People at Food Clique in UTOWN: {fcutownCapacity}
+          No. of People at Food Clique in UTOWN:{" "}
+          {fcutownCapacity ? fcutownCapacity : 0}
         </Typography>
       </Stack>
     </Stack>

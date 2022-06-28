@@ -8,22 +8,32 @@ function USPTembu() {
   const [uspCapacity, setUspCapacity] = useState("");
 
   useEffect(() => {
-    fetchCapacity();
+    fetchUSPCapacity();
   }, []);
 
-  async function fetchCapacity() {
-    const { data, error } = await supabase.from("locations").select();
+  useEffect(() => {
+    fetchTembuCapacity();
+  }, []);
+
+  async function fetchUSPCapacity() {
+    const { data, error } = await supabase.rpc("count_num_uspdh");
 
     if (error) {
       alert(error.message);
     }
-    for (let i = 0; i < data.length; i++) {
-      if (data[i].name == "TEMBUSU DH") {
-        setTembusuCapacity(data[i].current_vol);
-      }
-      if (data[i].name == "USP DH") {
-        setUspCapacity(data[i].current_vol);
-      }
+    if (data) {
+      setUspCapacity(data);
+    }
+  }
+
+  async function fetchTembuCapacity() {
+    const { data, error } = await supabase.rpc("count_num_tembudh");
+
+    if (error) {
+      alert(error.message);
+    }
+    if (data) {
+      setTembusuCapacity(data);
     }
   }
 
@@ -42,10 +52,10 @@ function USPTembu() {
 
       <Stack spacing={3} justifyContent="center">
         <Typography variant="subtitle1">
-          No. of People at USP side: {uspCapacity}
+          No. of People at USP side: {uspCapacity ? uspCapacity : 0}
         </Typography>
         <Typography variant="subtitle1">
-          No. of People at Tembusu side: {tembusuCapacity}
+          No. of People at Tembusu side: {tembusuCapacity ? tembusuCapacity : 0}
         </Typography>
       </Stack>
     </Stack>
