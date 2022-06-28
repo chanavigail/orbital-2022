@@ -8,12 +8,14 @@ import {
 } from "@mui/material";
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { supabase } from "./helper";
 
 function LogIn() {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState(null);
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -26,6 +28,7 @@ function LogIn() {
       });
       if (error) throw error;
       alert("You have successsfully logged in!");
+      navigate("/Home");
     } catch (error) {
       alert(error.error_description || error.message);
     } finally {
