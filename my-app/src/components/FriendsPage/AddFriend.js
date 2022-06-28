@@ -48,7 +48,7 @@ function AddFriend() {
                     className="search"
                     type="text"
                     placeholder="input friend's username here"
-                    value={adding}
+                    value={addingUsername}
                     onChange={(e) => setAddingUsername(e.target.value)}
                 />
                 <Button
