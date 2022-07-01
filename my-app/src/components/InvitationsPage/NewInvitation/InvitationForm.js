@@ -91,7 +91,12 @@ const InvitationForm = () => {
           Input details to create new invitation!
         </Typography>
 
-        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+        <Grid
+          container
+          rowSpacing={1}
+          columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+          sx={{ alignItems: "center" }}
+        >
           <Grid item md={6}>
             <InputLabel>Date</InputLabel>
             <TextField
@@ -120,7 +125,7 @@ const InvitationForm = () => {
           <Grid item md={6}>
             <InputLabel>Location</InputLabel>
             <Select
-              sx={{ width: 250 }}
+              sx={{ width: 250, textAlign: "left" }}
               value={enteredLocation}
               onChange={locationChangeHandler}
             >
@@ -133,11 +138,12 @@ const InvitationForm = () => {
             </Select>
           </Grid>
 
-          <Grid item md={6} sx={{ alignItems: "center" }}>
+          <Grid item md={6}>
             <Button
               variant="contained"
               style={{ backgroundColor: "#ffb24d" }}
               type="submit"
+              disabled={!(enteredDate && enteredTime && enteredLocation)}
             >
               Create Invitation
             </Button>
