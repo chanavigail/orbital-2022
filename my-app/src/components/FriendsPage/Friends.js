@@ -11,7 +11,7 @@ function Friends() {
         Friends
       </Typography>
       <AddFriend />
-      <FriendList />
+      {/* <FriendList /> */}
     </Stack>
   );
 }
