@@ -1,8 +1,8 @@
-import { Stack, TextField, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import React from "react";
 
 import AddFriend from "./AddFriend";
-import FriendList from "./FriendList";
+// import FriendList from "./FriendList";
 
 function Friends() {
   return (
