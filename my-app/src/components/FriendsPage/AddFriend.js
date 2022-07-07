@@ -37,7 +37,6 @@ function AddFriend() {
     
         try {
           setLoading(true);
-          getId()
           const { error } = await supabase
             .from("friends")
             .upsert({
@@ -56,7 +55,7 @@ function AddFriend() {
     return (
         <Box
             component="form"
-            onSubmit={checker}
+            onSubmit={""}
             margin="auto"
         >
                 <TextField
