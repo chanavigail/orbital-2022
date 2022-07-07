@@ -16,7 +16,7 @@ function AddFriend() {
             .from("profiles")
             .select("id")
             .match( {username: addingUsername} )
-        if (data) {
+        if ( getFriendId ) {
           setFriendId(getFriendId);
         } else {
           setAddingUsername("")
