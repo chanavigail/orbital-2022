@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Box,
   Button,
   TextField
@@ -7,9 +7,9 @@ import { Box,
 import { supabase } from "../helper";
 
 function AddFriend() {
-    const [ loading, setLoading ] = React.useState(false);
-    const [ addingUsername, setAddingUsername ] = React.useEffect("");
-    const [ friendId, setFriendId ] = React.useEffect("");
+    const [ loading, setLoading ] = useState(false);
+    const [ addingUsername, setAddingUsername ] = useState("");
+    const [ friendId, setFriendId ] = useState("");
 
     // const getId = () => {
     //     const { data: getFriendId } = supabase
@@ -53,27 +53,29 @@ function AddFriend() {
     //   };
 
     return (
+      <Container>
         <Box
             component="form"
             onSubmit={""}
             margin="auto"
         >
-                <TextField
-                    id="friend-search"
-                    className="search"
-                    type="text"
-                    placeholder="input friend's username here"
-                    value={addingUsername}
-                    onChange={(e) => setAddingUsername(e.target.value)}
-                />
-                <Button
-                    variant="contained"
-                    style={{ backgroundColor: "#ffb24d" }}
-                    type="submit"
-                >
-                  Add
-                </Button>
+          <TextField
+            id="friend-search"
+            className="search"
+            type="text"
+            placeholder="input friend's username here"
+            value={addingUsername}
+            onChange={(e) => setAddingUsername(e.target.value)}
+          />
+          <Button
+            variant="contained"
+            style={{ backgroundColor: "#ffb24d" }}
+            type="submit"
+          >
+            Add
+          </Button>
         </Box>
+      </Container>
     )
 }
 
