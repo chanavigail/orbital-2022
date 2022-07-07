@@ -14,6 +14,7 @@ function AddFriend() {
     const [ friendId, setFriendId ] = useState("");
 
     const getId = () => {
+      alert("huh")
         const { data: getFriendId } = supabase
             .from("profiles")
             .select("id")
