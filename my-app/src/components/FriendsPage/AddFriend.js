@@ -25,14 +25,15 @@ function AddFriend() {
         }
     }
 
-    // const checker = (e) => {
-    //   getId();
-    //   if (addingUsername.length === 0) {
-    //     alert("No such username exists, please check again")
-    //   } else {
-    //     handleAdd();
-    //   }
-    // }
+    const checker = () => {
+      getId();
+      if (addingUsername.length === 0) {
+        alert("No such username exists, please check again")
+      } else {
+        // handleAdd();
+        const abc = 0;
+      }
+    }
 
     // const handleAdd = async (e) => {
     //     e.preventDefault();
