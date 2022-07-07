@@ -30,30 +30,29 @@ function AddFriend() {
       if (addingUsername.length === 0) {
         alert("No such username exists, please check again")
       } else {
-        // handleAdd();
-        const abc = 0;
+        handleAdd();
       }
     }
 
-    // const handleAdd = async (e) => {
-    //     e.preventDefault();
+    const handleAdd = async (e) => {
+        e.preventDefault();
     
-    //     try {
-    //       setLoading(true);
-    //       const { error } = await supabase
-    //         .from("friends")
-    //         .upsert({
-    //             user_id: supabase.auth.user().id,
-    //             friend_id: friendId
-    //         })
-    //       if (error) throw error;
-    //       alert("You have successsfully added " + addingUsername + " as a friend!");
-    //     } catch (error) {
-    //       alert(error.error_description || error.message);
-    //     } finally {
-    //       setLoading(false);
-    //     }
-    //   };
+        try {
+          setLoading(true);
+          const { error } = await supabase
+            .from("friends")
+            .upsert({
+                user_id: supabase.auth.user().id,
+                friend_id: friendId
+            })
+          if (error) throw error;
+          alert("You have successsfully added " + addingUsername + " as a friend!");
+        } catch (error) {
+          alert(error.error_description || error.message);
+        } finally {
+          setLoading(false);
+        }
+      };
 
     return (
       <Container>
