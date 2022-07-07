@@ -30,6 +30,7 @@ function AddFriend() {
       if (addingUsername.length === 0) {
         alert("No such username exists, please check again")
       } else {
+        alert("valid user, adding friend...")
         handleAdd();
       }
     }
