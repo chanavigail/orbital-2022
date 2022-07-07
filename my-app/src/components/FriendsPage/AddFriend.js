@@ -13,17 +13,17 @@ function AddFriend() {
     const [ addingUsername, setAddingUsername ] = useState("");
     const [ friendId, setFriendId ] = useState("");
 
-    // const getId = () => {
-    //     const { data: getFriendId } = supabase
-    //         .from("profiles")
-    //         .select("id")
-    //         .match( {username: addingUsername} )
-    //     if ( getFriendId ) {
-    //       setFriendId(getFriendId);
-    //     } else {
-    //       setAddingUsername("")
-    //     }
-    // }
+    const getId = () => {
+        const { data: getFriendId } = supabase
+            .from("profiles")
+            .select("id")
+            .match( {username: addingUsername} )
+        if ( getFriendId ) {
+          setFriendId(getFriendId);
+        } else {
+          setAddingUsername("")
+        }
+    }
 
     // const checker = (e) => {
     //   getId();
@@ -73,6 +73,7 @@ function AddFriend() {
             variant="contained"
             style={{ backgroundColor: "#ffb24d" }}
             type="submit"
+            id="add-button"
           >
             Add
           </Button>

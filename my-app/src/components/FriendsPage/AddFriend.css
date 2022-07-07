@@ -1,3 +1,5 @@
-.search {
-    width: 80%
+#add-button {
+    position: relative;
+    left: 20;
+    top: 10
 }
