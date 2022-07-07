@@ -11,46 +11,46 @@ function AddFriend() {
     const [ addingUsername, setAddingUsername ] = React.useEffect("");
     const [ friendId, setFriendId ] = React.useEffect("");
 
-    const getId = () => {
-        const { data: getFriendId } = supabase
-            .from("profiles")
-            .select("id")
-            .match( {username: addingUsername} )
-        if ( getFriendId ) {
-          setFriendId(getFriendId);
-        } else {
-          setAddingUsername("")
-        }
-    }
+    // const getId = () => {
+    //     const { data: getFriendId } = supabase
+    //         .from("profiles")
+    //         .select("id")
+    //         .match( {username: addingUsername} )
+    //     if ( getFriendId ) {
+    //       setFriendId(getFriendId);
+    //     } else {
+    //       setAddingUsername("")
+    //     }
+    // }
 
-    const checker = (e) => {
-      getId();
-      if (addingUsername.length === 0) {
-        alert("No such username exists, please check again")
-      } else {
-        handleAdd();
-      }
-    }
+    // const checker = (e) => {
+    //   getId();
+    //   if (addingUsername.length === 0) {
+    //     alert("No such username exists, please check again")
+    //   } else {
+    //     handleAdd();
+    //   }
+    // }
 
-    const handleAdd = async (e) => {
-        e.preventDefault();
+    // const handleAdd = async (e) => {
+    //     e.preventDefault();
     
-        try {
-          setLoading(true);
-          const { error } = await supabase
-            .from("friends")
-            .upsert({
-                user_id: supabase.auth.user().id,
-                friend_id: friendId
-            })
-          if (error) throw error;
-          alert("You have successsfully added " + addingUsername + " as a friend!");
-        } catch (error) {
-          alert(error.error_description || error.message);
-        } finally {
-          setLoading(false);
-        }
-      };
+    //     try {
+    //       setLoading(true);
+    //       const { error } = await supabase
+    //         .from("friends")
+    //         .upsert({
+    //             user_id: supabase.auth.user().id,
+    //             friend_id: friendId
+    //         })
+    //       if (error) throw error;
+    //       alert("You have successsfully added " + addingUsername + " as a friend!");
+    //     } catch (error) {
+    //       alert(error.error_description || error.message);
+    //     } finally {
+    //       setLoading(false);
+    //     }
+    //   };
 
     return (
         <Box
