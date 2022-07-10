@@ -14,7 +14,6 @@ function AddFriend() {
     const [ friendId, setFriendId ] = useState("");
 
     const getId = () => {
-      alert("huh")
         const { data: getFriendId } = supabase
             .from("profiles")
             .select("id")
@@ -37,24 +36,26 @@ function AddFriend() {
     }
 
     const handleAdd = async (e) => {
-        e.preventDefault();
-    
-        try {
-          setLoading(true);
-          const { error } = await supabase
-            .from("friends")
-            .upsert({
-                user_id: supabase.auth.user().id,
-                friend_id: friendId
-            })
-          if (error) throw error;
-          alert("You have successsfully added " + addingUsername + " as a friend!");
-        } catch (error) {
-          alert(error.error_description || error.message);
-        } finally {
-          setLoading(false);
-        }
-      };
+      alert("huh")
+      e.preventDefault();
+      alert("another one thank you")
+
+      try {
+        setLoading(true);
+        const { error } = await supabase
+          .from("friends")
+          .upsert({
+            user_id: supabase.auth.user().id,
+            friend_id: friendId
+          })
+        if (error) throw error;
+        alert("You have successsfully added " + addingUsername + " as a friend!");
+      } catch (error) {
+        alert(error.error_description || error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
     return (
       <Container>
