@@ -12,23 +12,23 @@ function AddFriend() {
     const [ loading, setLoading ] = useState(false);
     const [ addingUsername, setAddingUsername ] = useState("");
     const [ friendId, setFriendId ] = useState("");
+    const [ check, setCheck ] = useState(0);
 
     const getId = () => {
         const { data: getFriendId } = supabase
             .from("profiles")
             .select("id")
             .match( {username: addingUsername} )
-        if ( getFriendId ) {
+        if ( getFriendId !== null ) {
           setFriendId(getFriendId);
-        } else {
-          setAddingUsername("")
+          setCheck(1);
         }
     }
 
-    const checker = (e) => {
+    const checker = async (e) => {
       e.preventDefault();
       getId();
-      if (addingUsername.length === 0) {
+      if (check === 0) {
         alert("No such user exists, please check again")
       } else {
         alert("valid user, adding friend...")
@@ -37,8 +37,6 @@ function AddFriend() {
     }
 
     const handleAdd = async (e) => {
-      alert("huh")
-
       try {
         setLoading(true);
         const { error } = await supabase
