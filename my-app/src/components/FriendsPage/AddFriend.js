@@ -25,7 +25,7 @@ function AddFriend() {
         }
     }
 
-    const checker = () => {
+    const checker = (e) => {
       getId();
       if (addingUsername.length === 0) {
         alert("No such user exists, please check again")
