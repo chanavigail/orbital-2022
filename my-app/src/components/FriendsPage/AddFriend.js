@@ -15,14 +15,15 @@ function AddFriend() {
     const [ check, setCheck ] = useState(0);
 
     const getId = () => {
-        const { data: getFriendId } = supabase
-            .from("profiles")
-            .select("id")
-            .match( {username: addingUsername} )
-        if ( getFriendId !== null ) {
-          setFriendId(getFriendId);
-          setCheck(1);
-        }
+      const { data: getFriendId } = supabase
+        .from("profiles")
+        .select("id")
+        .match( {username: addingUsername} )
+      alert(getFriendId)
+      if ( getFriendId !== null ) {
+        setFriendId(getFriendId);
+        setCheck(1);
+      }
     }
 
     const checker = async (e) => {
