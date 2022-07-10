@@ -26,6 +26,7 @@ function AddFriend() {
     }
 
     const checker = (e) => {
+      e.preventDefault();
       getId();
       if (addingUsername.length === 0) {
         alert("No such user exists, please check again")
@@ -37,8 +38,6 @@ function AddFriend() {
 
     const handleAdd = async (e) => {
       alert("huh")
-      e.preventDefault();
-      alert("another one thank you")
 
       try {
         setLoading(true);
