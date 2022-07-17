@@ -14,6 +14,7 @@ import { supabase } from "./helper";
 function MainPage() {
   const [enteredLocation, setEnteredLocation] = useState("");
   const [session, setSession] = useState(null);
+  const [currentLocation, setCurrentLocation] = useState("");
 
   useEffect(() => {
     setSession(supabase.auth.session());
@@ -23,47 +24,64 @@ function MainPage() {
     });
   }, []);
 
+  useEffect(() => {
+    fetchCurrentLocation();
+  }, []);
+
+  const user = supabase.auth.user();
+
+  async function fetchCurrentLocation() {
+    const { data, error } = await supabase
+      .from("profiles")
+      .select("id, current_loc")
+      .eq("id", user.id)
+      .single();
+    const loc = data.current_loc;
+
+    if (error) {
+      alert(error.message);
+    }
+    if (loc) {
+      setCurrentLocation(loc);
+    }
+  }
+
   const locationChangeHandler = (event) => {
     setEnteredLocation(event.target.value);
   };
 
-  const user = supabase.auth.user();
-
   async function handleCheckIn() {
-    const { data } = await supabase
-      .from("locations")
-      .select("name, current_vol")
-      .match({ name: enteredLocation });
-
-    const { error } = await supabase.from("locations").upsert({
-      name: enteredLocation,
-      current_vol: data.pop().current_vol + 1,
-    });
-
     const updates = {
       id: user.id,
       current_loc: enteredLocation,
       updated_at: new Date(),
     };
 
-    const { error1 } = await supabase.from("profiles").upsert(updates, {
-      returning: "minimal",
-    });
-    if (error1) throw error;
-    alert("You have successsfully checked in to " + enteredLocation + "!");
+    if (currentLocation != "") {
+      alert(
+        "Please check out of " +
+          currentLocation +
+          " before checking in to new location."
+      );
+    } else {
+      const { error1 } = await supabase.from("profiles").upsert(updates, {
+        returning: "minimal",
+      });
+      if (error1) throw error;
+      alert("You have successsfully checked in to " + enteredLocation + "!");
+
+      const func =
+        "count_num_" + enteredLocation.toLocaleLowerCase().replace(/\s/g, "");
+      const { data } = await supabase.rpc(func);
+
+      const { error } = await supabase.from("locations").upsert({
+        name: enteredLocation,
+        current_vol: data,
+      });
+    }
   }
 
   async function handleCheckOut() {
-    const { data } = await supabase
-      .from("locations")
-      .select("name, current_vol")
-      .match({ name: enteredLocation });
-
-    const { error } = await supabase.from("locations").upsert({
-      name: enteredLocation,
-      current_vol: data.pop().current_vol - 1,
-    });
-
     const updates = {
       id: user.id,
       current_loc: null,
@@ -75,6 +93,16 @@ function MainPage() {
     });
     if (error1) throw error;
     alert("You have successsfully checked out of " + enteredLocation + "!");
+
+    const func =
+      "count_num_" + enteredLocation.toLocaleLowerCase().replace(/\s/g, "");
+    const { data, error2 } = await supabase.rpc(func);
+
+    const { error } = await supabase.from("locations").upsert({
+      name: enteredLocation,
+      current_vol: data,
+    });
+    window.location.reload(false);
   }
 
   return (
@@ -99,7 +127,7 @@ function MainPage() {
                 onChange={locationChangeHandler}
               >
                 <MenuItem value="CAPT DH">CAPT DH</MenuItem>
-                <MenuItem value="TEMBUSU DH">Tembusu DH</MenuItem>
+                <MenuItem value="TEMBU DH">Tembusu DH</MenuItem>
                 <MenuItem value="RC4 DH">RC4 DH</MenuItem>
                 <MenuItem value="USP DH">USP DH</MenuItem>
                 <MenuItem value="UTOWN FC">UTOWN Food Clique</MenuItem>
