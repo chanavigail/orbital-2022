@@ -76,7 +76,6 @@ const Profile = () => {
       let { error } = await supabase.from("profiles").upsert(updates, {
         returning: "minimal", // Don't return the value after inserting
       });
-      console.log(error);
 
       if (error) {
         throw error;
