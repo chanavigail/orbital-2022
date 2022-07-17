@@ -5,6 +5,7 @@ import "./CreatedInvitation.css";
 
 function CreatedInvitation(props) {
   const [usernameData, setUsername] = useState(null);
+  const [accepted, setAccepted] = useState(false);
   const user = supabase.auth.user();
 
   useEffect(() => {
@@ -51,7 +52,7 @@ function CreatedInvitation(props) {
 
     if (error) throw error;
     alert("You have accepted the invition!");
-    window.location.reload(false);
+    setAccepted(true);
   };
 
   let accepted_names = "accepted by:  ";
@@ -84,6 +85,7 @@ function CreatedInvitation(props) {
         variant="contained"
         style={{ backgroundColor: "#ffb24d" }}
         onClick={handleAcceptInvitation}
+        disabled={accepted}
       >
         Accept
       </Button>
