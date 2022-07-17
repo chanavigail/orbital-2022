@@ -25,7 +25,7 @@ function FriendList() {
   const component = (
     <div className="friendslist">
       <ul className="friendslist" id="friends-ul">
-        <li className="friendslist friends-li">raynangxinyee@gmail.com</li>
+        <li className="friendslist friends-li">rayna</li>
       </ul>
     </div>
   );
