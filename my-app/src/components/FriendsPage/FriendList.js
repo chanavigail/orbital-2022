@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { supabase } from "../helper";
 import "./FriendList.css";
@@ -17,9 +17,9 @@ function FriendList() {
     if ( user !== null ) {
       const { data: userFriends, error: idError } = await supabase
         .from("friends")
-        .select("*")
+        .select("friend_id")
         .match({ user_id: user.id })
-      if (idError) throw error;
+      if (idError) throw idError;
       setIds(userFriends)
     }
   };
@@ -29,7 +29,7 @@ function FriendList() {
       const { data, error: friendsError } = await supabase
         .from("profiles")
         .select(`username, current_loc`)
-        .match( {id: id} )
+        .match( {id: ids[i].friend_id} )
       friends.push(
         {
           item_key: i + 1,
