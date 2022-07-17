@@ -18,7 +18,7 @@ function FriendList() {
       const { data: userFriends, error } = await supabase
         .from("friends")
         .select("*")
-        .match({ user_id: "c2bee42e-7da4-431b-b3c5-4226ece08234" })
+        .match({ user_id: user.id })
       if (error) throw error;
       setIds(userFriends)
     }
@@ -28,11 +28,11 @@ function FriendList() {
     ids.forEach(id => {
       const { data, error } = await supabase
         .from("profiles")
-        .select("username","current_loc")
+        .select(`username, current_loc`)
         .match( {id: id} )
       friends.push(
         {
-          item_key: ids.indexOf(id),
+          item_key: ids.indexOf(id) + 1,
           username: data[0].username,
           loc: data[0].current_loc}
       )
