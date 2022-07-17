@@ -15,28 +15,28 @@ function FriendList() {
 
   async function getIds() {
     if ( user !== null ) {
-      const { data: userFriends, error } = await supabase
+      const { data: userFriends, error: idError } = await supabase
         .from("friends")
         .select("*")
         .match({ user_id: user.id })
-      if (error) throw error;
+      if (idError) throw error;
       setIds(userFriends)
     }
   };
 
   async function getFriends() {
-    ids.forEach(id => {
-      const { data, error } = await supabase
+    for (let i = 0; i < ids.length; i++) {
+      const { data, error: friendsError } = await supabase
         .from("profiles")
         .select(`username, current_loc`)
         .match( {id: id} )
       friends.push(
         {
-          item_key: ids.indexOf(id) + 1,
+          item_key: i + 1,
           username: data[0].username,
           loc: data[0].current_loc}
       )
-    })
+    }
   }
 
   const component = (

@@ -14,7 +14,7 @@ function AddFriend() {
     const [ friendId, setFriendId ] = useState("");
     const [ check, setCheck ] = useState(0);
 
-    const getId = async  () => {
+    const getId = async () => {
       const { data: getFriendId } = await supabase
         .from("profiles")
         .select("id")
