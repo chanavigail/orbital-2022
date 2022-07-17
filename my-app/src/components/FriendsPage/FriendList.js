@@ -1,31 +1,50 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 
 import { supabase } from "../helper";
 import "./FriendList.css";
 
 function FriendList() {
-  const [ friends, setFriends ] = React.useState([""]);
+  const [ ids, setIds ] = useState([]);
+  const [ friends, setFriends ] = useState([])
   const user = supabase.auth.user();
 
   useEffect(() => {
+    getIds();
     getFriends();
   }, [])
 
-  async function getFriends() {
+  async function getIds() {
     if ( user !== null ) {
       const { data: userFriends, error } = await supabase
         .from("friends")
         .select("*")
         .match({ user_id: "c2bee42e-7da4-431b-b3c5-4226ece08234" })
       if (error) throw error;
-      setFriends(userFriends)
+      setIds(userFriends)
     }
   };
+
+  async function getFriends() {
+    ids.forEach(id => {
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("username","current_loc")
+        .match( {id: id} )
+      friends.push(
+        {
+          item_key: ids.indexOf(id),
+          username: data[0].username,
+          loc: data[0].current_loc}
+      )
+    })
+  }
 
   const component = (
     <div className="friendslist">
       <ul className="friendslist" id="friends-ul">
-        <li className="friendslist friends-li">rayna</li>
+        {friends.map((item) => (
+          <li key={item.item_key}>{item.username} - {item.loc}</li>
+        ))}
       </ul>
     </div>
   );

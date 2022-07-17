@@ -19,6 +19,7 @@ function AddFriend() {
         .from("profiles")
         .select("id")
         .match( {username: addingUsername} )
+      alert(addingUsername)
       alert(getFriendId)
       if ( getFriendId !== null ) {
         setFriendId(getFriendId);
