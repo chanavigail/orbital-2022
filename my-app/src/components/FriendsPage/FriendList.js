@@ -39,7 +39,7 @@ function FriendList() {
     }
   }
 
-  const component = (
+  return (
     <div className="friendslist">
       <ul className="friendslist" id="friends-ul">
         {friends.map((item) => (
@@ -48,15 +48,6 @@ function FriendList() {
       </ul>
     </div>
   );
-  
-  // for (let i=0; i <= friends.length; i++) {
-  //   const friends_li = document.createElement("li");
-  //   friends_li.innerHTML = friends[i];
-  //   friends_li.setAttribute("class", "friendslist friends-li")
-  //   document.getElementById("friends-ul").appendChild(friends_li);
-  // }
-
-  return component;
 }
 
 export default FriendList;
