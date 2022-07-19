@@ -1,11 +1,10 @@
 import { Box, Typography, Button, Stack } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { cloneElement, useEffect, useState } from "react";
 import { supabase } from "../../helper";
 import "./CreatedInvitation.css";
 
 function CreatedInvitation(props) {
   const [usernameData, setUsername] = useState(null);
-  const [accepted, setAccepted] = useState(false);
   const user = supabase.auth.user();
 
   useEffect(() => {
@@ -29,30 +28,35 @@ function CreatedInvitation(props) {
   };
 
   let arr = props.accepted_people;
-  /* thinking of adding ppl who accepted the invitation alr */
   const handleAcceptInvitation = async (e) => {
     e.preventDefault();
-    arr.push(usernameData);
 
-    const invitationData = {
-      id: props.id,
-      invitation_id: props.invitationNum,
-      date: props.date,
-      time: props.time,
-      location: props.location,
-      accepted_people: arr,
-      username: props.name,
-    };
+    if (arr.includes(usernameData)) {
+      alert("You have already accepted this invitation!");
+    } else if (usernameData == props.name) {
+      alert("You cannot accept your own invitation!");
+    } else {
+      arr.push(usernameData);
 
-    const { error } = await supabase
-      .from("invitations")
-      .upsert(invitationData, {
-        returning: "minimal",
-      });
+      const invitationData = {
+        id: props.id,
+        invitation_id: props.invitationNum,
+        date: props.date,
+        time: props.time,
+        location: props.location,
+        accepted_people: arr,
+        username: props.name,
+      };
 
-    if (error) throw error;
-    alert("You have accepted the invition!");
-    setAccepted(true);
+      const { error } = await supabase
+        .from("invitations")
+        .upsert(invitationData, {
+          returning: "minimal",
+        });
+
+      if (error) throw error;
+      alert("You have accepted the invition!");
+    }
   };
 
   let accepted_names = "accepted by:  ";
@@ -85,7 +89,6 @@ function CreatedInvitation(props) {
         variant="contained"
         style={{ backgroundColor: "#ffb24d" }}
         onClick={handleAcceptInvitation}
-        disabled={accepted}
       >
         Accept
       </Button>
