@@ -43,7 +43,7 @@ function MainPage() {
       updated_at: new Date(),
     };
 
-    if (loc != "" || loc != null) {
+    if (loc != null) {
       alert(
         "Please check out of " + loc + " before checking in to new location."
       );
