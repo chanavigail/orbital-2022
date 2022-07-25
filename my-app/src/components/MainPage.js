@@ -14,7 +14,6 @@ import { supabase } from "./helper";
 function MainPage() {
   const [enteredLocation, setEnteredLocation] = useState("");
   const [session, setSession] = useState(null);
-  const [currentLocation, setCurrentLocation] = useState("");
 
   useEffect(() => {
     setSession(supabase.auth.session());
@@ -24,13 +23,13 @@ function MainPage() {
     });
   }, []);
 
-  useEffect(() => {
-    fetchCurrentLocation();
-  }, []);
-
   const user = supabase.auth.user();
 
-  async function fetchCurrentLocation() {
+  const locationChangeHandler = (event) => {
+    setEnteredLocation(event.target.value);
+  };
+
+  async function handleCheckIn() {
     const { data, error } = await supabase
       .from("profiles")
       .select("id, current_loc")
@@ -38,30 +37,15 @@ function MainPage() {
       .single();
     const loc = data.current_loc;
 
-    if (error) {
-      alert(error.message);
-    }
-    if (loc) {
-      setCurrentLocation(loc);
-    }
-  }
-
-  const locationChangeHandler = (event) => {
-    setEnteredLocation(event.target.value);
-  };
-
-  async function handleCheckIn() {
     const updates = {
       id: user.id,
-      current_loc: enteredLocation,
+      current_loc: loc,
       updated_at: new Date(),
     };
 
-    if (currentLocation != "") {
+    if (loc != "") {
       alert(
-        "Please check out of " +
-          currentLocation +
-          " before checking in to new location."
+        "Please check out of " + loc + " before checking in to new location."
       );
     } else {
       const { error1 } = await supabase.from("profiles").upsert(updates, {
@@ -82,6 +66,13 @@ function MainPage() {
   }
 
   async function handleCheckOut() {
+    const { data: data1, error: error3 } = await supabase
+      .from("profiles")
+      .select("id, current_loc")
+      .eq("id", user.id)
+      .single();
+    const loc = data1.current_loc;
+
     const updates = {
       id: user.id,
       current_loc: null,
