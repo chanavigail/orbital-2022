@@ -43,7 +43,7 @@ function FriendList() {
     <div className="friendslist">
       <ul className="friendslist" id="friends-ul">
         {friends.map((item) => (
-          <li key={item.item_key}>{item.username} - {item.loc}</li>
+          <li className="friends-li" key={item.item_key}>{item.username} - {item.loc}</li>
         ))}
       </ul>
     </div>
