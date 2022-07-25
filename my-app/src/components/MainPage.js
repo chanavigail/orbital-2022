@@ -40,7 +40,7 @@ function MainPage() {
 
     const updates = {
       id: user.id,
-      current_loc: loc,
+      current_loc: enteredLocation,
       updated_at: new Date(),
     };
 
@@ -80,21 +80,33 @@ function MainPage() {
       updated_at: new Date(),
     };
 
-    const { error1 } = await supabase.from("profiles").upsert(updates, {
-      returning: "minimal",
-    });
-    if (error1) throw error;
-    alert("You have successsfully checked out of " + enteredLocation + "!");
+    if (loc == null) {
+      alert("You have not checked in to any location.");
+    } else if (enteredLocation != loc) {
+      alert(
+        "You are not checked in to " +
+          enteredLocation +
+          ". Please check out of " +
+          loc +
+          " instead."
+      );
+    } else {
+      const { error1 } = await supabase.from("profiles").upsert(updates, {
+        returning: "minimal",
+      });
+      if (error1) throw error;
+      alert("You have successsfully checked out of " + enteredLocation + "!");
 
-    const func =
-      "count_num_" + enteredLocation.toLocaleLowerCase().replace(/\s/g, "");
-    const { data, error2 } = await supabase.rpc(func);
+      const func =
+        "count_num_" + enteredLocation.toLocaleLowerCase().replace(/\s/g, "");
+      const { data, error2 } = await supabase.rpc(func);
 
-    const { error } = await supabase.from("locations").upsert({
-      name: enteredLocation,
-      current_vol: data,
-    });
-    window.location.reload(false);
+      const { error } = await supabase.from("locations").upsert({
+        name: enteredLocation,
+        current_vol: data,
+      });
+      window.location.reload(false);
+    }
   }
 
   return (
