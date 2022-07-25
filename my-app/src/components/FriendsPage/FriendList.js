@@ -8,7 +8,6 @@ function FriendList() {
   const [ friends, setFriends ] = useState([])
 
   useEffect(() => {
-    getIds();
     getFriends();
   }, [])
 
@@ -24,6 +23,7 @@ function FriendList() {
   };
 
   async function getFriends() {
+    getIds();
     for (let i = 0; i < ids.length; i++) {
       const { data, error: friendsError } = await supabase
         .from("profiles")
