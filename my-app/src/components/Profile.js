@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Box,
   Button,
   Divider,
@@ -75,7 +76,6 @@ const Profile = () => {
       let { error } = await supabase.from("profiles").upsert(updates, {
         returning: "minimal", // Don't return the value after inserting
       });
-      console.log(error);
 
       if (error) {
         throw error;
@@ -115,8 +115,13 @@ const Profile = () => {
             &nbsp;to Sign Up!
           </Typography>
         ) : (
-          <Box component="form" margin="auto">
-            <Stack divider={<Divider orientation="horizontal" />} spacing={2}>
+          <Box component="form" marginTop={2}>
+            <Stack
+              divider={<Divider orientation="horizontal" />}
+              spacing={2}
+              //sx={{ alignItems: "center" }}
+            >
+              <Avatar sx={{ width: 56, height: 56 }} />
               <Box
                 display="flex"
                 gap={2}
@@ -157,7 +162,7 @@ const Profile = () => {
       {loading ? (
         ""
       ) : (
-        <Box marginTop={30}>
+        <Box marginTop={20}>
           <Button
             variant="contained"
             style={{ backgroundColor: "#ffb24d" }}

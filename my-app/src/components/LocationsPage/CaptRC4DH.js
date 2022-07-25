@@ -7,22 +7,32 @@ function CaptRC4DH() {
   const [rc4Capacity, setRC4Capacity] = useState("");
 
   useEffect(() => {
-    fetchCapacity();
+    fetchCAPTCapacity();
   }, []);
 
-  async function fetchCapacity() {
-    const { data, error } = await supabase.from("locations").select();
+  useEffect(() => {
+    fetchRC4Capacity();
+  }, []);
+
+  async function fetchCAPTCapacity() {
+    const { data, error } = await supabase.rpc("count_num_captdh");
 
     if (error) {
       alert(error.message);
     }
-    for (let i = 0; i < data.length; i++) {
-      if (data[i].name == "CAPT DH") {
-        setCaptCapacity(data[i].current_vol);
-      }
-      if (data[i].name == "RC4 DH") {
-        setRC4Capacity(data[i].current_vol);
-      }
+    if (data) {
+      setCaptCapacity(data);
+    }
+  }
+
+  async function fetchRC4Capacity() {
+    const { data, error } = await supabase.rpc("count_num_rc4dh");
+
+    if (error) {
+      alert(error.message);
+    }
+    if (data) {
+      setRC4Capacity(data);
     }
   }
 
@@ -41,10 +51,10 @@ function CaptRC4DH() {
 
       <Stack spacing={3} justifyContent="center">
         <Typography variant="subtitle1">
-          No. of People at CAPT side: {captCapacity}
+          No. of People at CAPT side: {captCapacity ? captCapacity : 0}
         </Typography>
         <Typography variant="subtitle1">
-          No. of People at RC4 side: {rc4Capacity}
+          No. of People at RC4 side: {rc4Capacity ? rc4Capacity : 0}
         </Typography>
       </Stack>
     </Stack>

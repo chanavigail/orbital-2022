@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import { 
-  Box,
-  Button,
-  Container,
-  TextField
-} from "@mui/material";
+import { Box, Button, Container, Stack, TextField } from "@mui/material";
 
 import { supabase } from "../helper";
 
@@ -77,11 +72,11 @@ function AddFriend() {
             type="submit"
             id="add-button"
           >
-            Add
-          </Button>
-        </Box>
-      </Container>
-    )
+          Add Friend
+        </Button>
+      </Stack>
+    </Container>
+  );
 }
 
 export default AddFriend;

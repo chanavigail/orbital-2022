@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   Box,
@@ -13,50 +13,69 @@ import { supabase } from "./helper";
 
 function MainPage() {
   const [enteredLocation, setEnteredLocation] = useState("");
+  const [session, setSession] = useState(null);
+
+  useEffect(() => {
+    setSession(supabase.auth.session());
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+  }, []);
+
+  const user = supabase.auth.user();
+
   const locationChangeHandler = (event) => {
     setEnteredLocation(event.target.value);
   };
 
-  const user = supabase.auth.user();
-
   async function handleCheckIn() {
-    const { data } = await supabase
-      .from("locations")
-      .select("name, current_vol")
-      .match({ name: enteredLocation });
-
-    const { error } = await supabase.from("locations").upsert({
-      name: enteredLocation,
-      current_vol: data.pop().current_vol + 1,
-    });
+    const { data, error } = await supabase
+      .from("profiles")
+      .select("id, current_loc")
+      .eq("id", user.id)
+      .single();
+    const loc = data.current_loc;
 
     const updates = {
       id: user.id,
-      current_loc: enteredLocation,
+      current_loc: loc,
       updated_at: new Date(),
     };
 
-    const { error1 } = await supabase.from("profiles").upsert(updates, {
-      returning: "minimal",
-    });
-    if (error1) throw error;
-    alert("You have successsfully checked in to " + enteredLocation + "!");
+    if (loc != "") {
+      alert(
+        "Please check out of " + loc + " before checking in to new location."
+      );
+    } else {
+      const { error1 } = await supabase.from("profiles").upsert(updates, {
+        returning: "minimal",
+      });
+      if (error1) throw error;
+      alert("You have successsfully checked in to " + enteredLocation + "!");
+
+      const func =
+        "count_num_" + enteredLocation.toLocaleLowerCase().replace(/\s/g, "");
+      const { data } = await supabase.rpc(func);
+
+      const { error } = await supabase.from("locations").upsert({
+        name: enteredLocation,
+        current_vol: data,
+      });
+    }
   }
 
   async function handleCheckOut() {
-    const { data } = await supabase
-      .from("locations")
-      .select("name, current_vol")
-      .match({ name: enteredLocation });
-
-    const { error } = await supabase.from("locations").upsert({
-      name: enteredLocation,
-      current_vol: data.pop().current_vol - 1,
-    });
+    const { data: data1, error: error3 } = await supabase
+      .from("profiles")
+      .select("id, current_loc")
+      .eq("id", user.id)
+      .single();
+    const loc = data1.current_loc;
 
     const updates = {
       id: user.id,
-      current_loc: enteredLocation,
+      current_loc: null,
       updated_at: new Date(),
     };
 
@@ -65,6 +84,16 @@ function MainPage() {
     });
     if (error1) throw error;
     alert("You have successsfully checked out of " + enteredLocation + "!");
+
+    const func =
+      "count_num_" + enteredLocation.toLocaleLowerCase().replace(/\s/g, "");
+    const { data, error2 } = await supabase.rpc(func);
+
+    const { error } = await supabase.from("locations").upsert({
+      name: enteredLocation,
+      current_vol: data,
+    });
+    window.location.reload(false);
   }
 
   return (
@@ -73,46 +102,58 @@ function MainPage() {
         Check in/out
       </Typography>
 
-      <Box>
-        <Typography variant="h5">
-          Select location to check in/out of!
-        </Typography>
-      </Box>
+      {session ? (
+        <>
+          <Box>
+            <Typography variant="h5">
+              Select location to check in/out of!
+            </Typography>
+          </Box>
 
-      <Box>
-        <Stack direction="row" spacing={2}>
-          <Select
-            sx={{ width: 250 }}
-            value={enteredLocation}
-            onChange={locationChangeHandler}
-          >
-            <MenuItem value="CAPT DH">CAPT DH</MenuItem>
-            <MenuItem value="TEMBUSU DH">Tembusu DH</MenuItem>
-            <MenuItem value="RC4 DH">RC4 DH</MenuItem>
-            <MenuItem value="USP DH">USP DH</MenuItem>
-            <MenuItem value="UTOWN FC">UTOWN Food Clique</MenuItem>
-            <MenuItem value="UTOWN FF">UTOWN Fine Food</MenuItem>
-          </Select>
-          <Button
-            style={{ backgroundColor: "#ffb24d", color: "black" }}
-            sx={{ fontWeight: "fontWeightBold" }}
-            variant="contained"
-            type="submit"
-            onClick={handleCheckIn}
-          >
-            Check in
-          </Button>
-          <Button
-            style={{ backgroundColor: "#ffb24d", color: "black" }}
-            sx={{ fontWeight: "fontWeightBold" }}
-            variant="contained"
-            type="submit"
-            onClick={handleCheckOut}
-          >
-            Check out
-          </Button>
-        </Stack>
-      </Box>
+          <Box>
+            <Stack direction="row" spacing={2}>
+              <Select
+                sx={{ width: 250 }}
+                value={enteredLocation}
+                onChange={locationChangeHandler}
+              >
+                <MenuItem value="CAPT DH">CAPT DH</MenuItem>
+                <MenuItem value="TEMBU DH">Tembusu DH</MenuItem>
+                <MenuItem value="RC4 DH">RC4 DH</MenuItem>
+                <MenuItem value="USP DH">USP DH</MenuItem>
+                <MenuItem value="UTOWN FC">UTOWN Food Clique</MenuItem>
+                <MenuItem value="UTOWN FF">UTOWN Fine Food</MenuItem>
+              </Select>
+              <Button
+                style={{ backgroundColor: "#ffb24d", color: "black" }}
+                sx={{ fontWeight: "fontWeightBold" }}
+                variant="contained"
+                type="submit"
+                onClick={handleCheckIn}
+              >
+                Check in
+              </Button>
+              <Button
+                style={{ backgroundColor: "#ffb24d", color: "black" }}
+                sx={{ fontWeight: "fontWeightBold" }}
+                variant="contained"
+                type="submit"
+                onClick={handleCheckOut}
+              >
+                Check out
+              </Button>
+            </Stack>
+          </Box>
+        </>
+      ) : (
+        <Typography variant="h6">
+          You are currently not logged in, click&nbsp;
+          <a href="http://localhost:3000/Log%20In">here</a>
+          &nbsp;to Log In or&nbsp;
+          <a href="http://localhost:3000/Sign%20Up">here</a>
+          &nbsp;to Sign Up to use this service.
+        </Typography>
+      )}
     </Stack>
   );
 }
