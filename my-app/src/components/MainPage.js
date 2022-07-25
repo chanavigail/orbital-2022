@@ -44,7 +44,9 @@ function MainPage() {
       updated_at: new Date(),
     };
 
-    if (loc != null) {
+    if (enteredLocation == "") {
+      alert("Please select a location to check in to.");
+    } else if (loc != null) {
       alert(
         "Please check out of " + loc + " before checking in to new location."
       );
@@ -80,7 +82,9 @@ function MainPage() {
       updated_at: new Date(),
     };
 
-    if (loc == null) {
+    if (enteredLocation == "") {
+      alert("Please select a location to check out of.");
+    } else if (loc == null) {
       alert("You have not checked in to any location.");
     } else if (enteredLocation != loc) {
       alert(
