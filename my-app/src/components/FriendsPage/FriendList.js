@@ -6,6 +6,7 @@ import "./FriendList.css";
 function FriendList() {
   const [ ids, setIds ] = useState([]);
   const [ friends, setFriends ] = useState([])
+  const user = supabase.auth.user()
 
   useEffect(() => {
     getFriends();
@@ -16,7 +17,7 @@ function FriendList() {
       const { data: userFriends, error: idError } = await supabase
         .from("friends")
         .select("friend_id")
-        .match({ user_id: supabase.auth.user().id })
+        .match({ user_id: user.id })
       if (idError) throw idError;
       setIds(userFriends)
     }
