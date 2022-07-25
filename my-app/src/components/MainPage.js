@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 
 import { supabase } from "./helper";
+import { Link } from "react-router-dom";
 
 function MainPage() {
   const [enteredLocation, setEnteredLocation] = useState("");
@@ -148,9 +149,9 @@ function MainPage() {
       ) : (
         <Typography variant="h6">
           You are currently not logged in, click&nbsp;
-          <a href="http://localhost:3000/Log%20In">here</a>
+          <Link to={`/${"Log In"}`}>here</Link>
           &nbsp;to Log In or&nbsp;
-          <a href="http://localhost:3000/Sign%20Up">here</a>
+          <Link to={`/${"Sign Up"}`}>here</Link>
           &nbsp;to Sign Up to use this service.
         </Typography>
       )}

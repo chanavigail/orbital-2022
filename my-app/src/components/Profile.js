@@ -11,6 +11,7 @@ import {
 import React from "react";
 import { useState, useEffect } from "react";
 import { supabase } from "./helper";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
   const [loading, setLoading] = useState(true);
@@ -109,10 +110,10 @@ const Profile = () => {
         {loading ? (
           <Typography variant="h6">
             You are currently not logged in, click&nbsp;
-            <a href="http://localhost:3000/Log%20In">here</a>
+            <Link to={`/${"Log In"}`}>here</Link>
             &nbsp;to Log In or&nbsp;
-            <a href="http://localhost:3000/Sign%20Up">here</a>
-            &nbsp;to Sign Up!
+            <Link to={`/${"Sign Up"}`}>here</Link>
+            &nbsp;to Sign Up to use this service.
           </Typography>
         ) : (
           <Box component="form" marginTop={2}>
