@@ -43,7 +43,6 @@ function MainPage() {
       current_loc: enteredLocation,
       updated_at: new Date(),
     };
-    console.log(loc == null);
 
     if (loc != null) {
       alert(
