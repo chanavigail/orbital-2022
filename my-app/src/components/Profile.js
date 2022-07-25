@@ -68,22 +68,33 @@ const Profile = () => {
 
       const updates = {
         id: user.id,
-        username,
-        avatar_url,
+        username: username,
         updated_at: new Date(),
-        current_loc,
+        current_loc: current_loc,
       };
 
-      let { error } = await supabase.from("profiles").upsert(updates, {
-        returning: "minimal", // Don't return the value after inserting
-      });
+      if (!username) {
+        alert("Please enter a username.");
+      } else {
+        let { error } = await supabase.from("profiles").upsert(updates, {
+          returning: "minimal", // Don't return the value after inserting
+        });
 
-      if (error) {
-        throw error;
+        if (error) {
+          throw error;
+        }
+        alert("Profile has been updated!");
       }
-      alert("Profile has been updated!");
     } catch (error) {
-      alert(error.message);
+      console.log(error.message);
+      if (
+        error.message ==
+        'duplicate key value violates unique constraint "profiles_username_key"'
+      ) {
+        alert("Username is taken. Please try another username.");
+      } else {
+        alert(error.message);
+      }
     } finally {
       setLoading(false);
     }

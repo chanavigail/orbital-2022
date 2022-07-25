@@ -64,18 +64,22 @@ const InvitationForm = () => {
       username: username,
     };
 
-    async function createInvitation() {
-      const { data, error } = await supabase
-        .from("invitations")
-        .insert([{ ...invitationData }]);
-      window.location.reload(false);
+    if (!username) {
+      alert("Please update profile first before creating an invitation.");
+    } else {
+      async function createInvitation() {
+        const { data, error } = await supabase
+          .from("invitations")
+          .insert([{ ...invitationData }]);
+        window.location.reload(false);
+      }
+
+      createInvitation();
+
+      setEnteredDate("");
+      setEnteredTime("");
+      setEnteredLocation("");
     }
-
-    createInvitation();
-
-    setEnteredDate("");
-    setEnteredTime("");
-    setEnteredLocation("");
   };
 
   return (
