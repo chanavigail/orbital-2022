@@ -2,7 +2,7 @@ import { Stack, Typography } from "@mui/material";
 import React from "react";
 
 import AddFriend from "./AddFriend";
-// import FriendList from "./FriendList";
+import FriendList from "./FriendList";
 
 function Friends() {
   return (
@@ -11,7 +11,7 @@ function Friends() {
         Friends
       </Typography>
       <AddFriend />
-      {/* <FriendList /> */}
+      <FriendList />
     </Stack>
   );
 }

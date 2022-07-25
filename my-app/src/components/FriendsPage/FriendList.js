@@ -1,43 +1,53 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { supabase } from "../helper";
 import "./FriendList.css";
 
 function FriendList() {
-  const [ friends, setFriends ] = React.useState([""]);
-  const user = supabase.auth.user();
+  const [ ids, setIds ] = useState([]);
+  const [ friends, setFriends ] = useState([])
 
   useEffect(() => {
+    getIds();
     getFriends();
   }, [])
 
-  async function getFriends() {
+  async function getIds() {
     if ( user !== null ) {
-      const { data: userFriends, error } = await supabase
+      const { data: userFriends, error: idError } = await supabase
         .from("friends")
-        .select("*")
-        .match({ user_id: "c2bee42e-7da4-431b-b3c5-4226ece08234" })
-      if (error) throw error;
-      setFriends(userFriends)
+        .select("friend_id")
+        .match({ user_id: supabase.auth.user().id })
+      if (idError) throw idError;
+      setIds(userFriends)
     }
   };
 
-  const component = (
+  async function getFriends() {
+    for (let i = 0; i < ids.length; i++) {
+      const { data, error: friendsError } = await supabase
+        .from("profiles")
+        .select(`username, current_loc`)
+        .match( {id: ids[i].friend_id} )
+      if (friendsError) throw friendsError;
+      friends.push(
+        {
+          item_key: i + 1,
+          username: data[0].username,
+          loc: data[0].current_loc}
+      )
+    }
+  }
+
+  return (
     <div className="friendslist">
       <ul className="friendslist" id="friends-ul">
-        <li className="friendslist friends-li">rayna</li>
+        {friends.map((item) => (
+          <li key={item.item_key}>{item.username} - {item.loc}</li>
+        ))}
       </ul>
     </div>
   );
-  
-  // for (let i=0; i <= friends.length; i++) {
-  //   const friends_li = document.createElement("li");
-  //   friends_li.innerHTML = friends[i];
-  //   friends_li.setAttribute("class", "friendslist friends-li")
-  //   document.getElementById("friends-ul").appendChild(friends_li);
-  // }
-
-  return component;
 }
 
 export default FriendList;
