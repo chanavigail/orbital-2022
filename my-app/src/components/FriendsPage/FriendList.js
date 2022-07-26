@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { supabase } from "../helper";
-import "./FriendList.css";
+// import "./FriendList.css";
 
 function FriendList() {
   const [ ids, setIds ] = useState([]);
