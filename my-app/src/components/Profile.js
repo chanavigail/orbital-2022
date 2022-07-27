@@ -19,6 +19,7 @@ const Profile = () => {
   const [avatar_url, setAvatarUrl] = useState(null);
   const [current_loc, setCurrent_loc] = useState(null);
   const [session, setSession] = useState(null);
+  const user = supabase.auth.user();
 
   useEffect(() => {
     setSession(supabase.auth.session());
@@ -35,7 +36,6 @@ const Profile = () => {
   const getProfile = async () => {
     try {
       setLoading(true);
-      const user = supabase.auth.user();
 
       let { data, error, status } = await supabase
         .from("profiles")
@@ -64,7 +64,6 @@ const Profile = () => {
 
     try {
       setLoading(true);
-      const user = supabase.auth.user();
 
       const updates = {
         id: user.id,
@@ -73,6 +72,24 @@ const Profile = () => {
         current_loc: current_loc,
       };
 
+      // copying out invitations of user and storing w changed username
+      let { data, error: error1 } = await supabase
+        .from("invitations")
+        .select()
+        .eq("id", user.id);
+      const updateForInvitations = [];
+      data.map((invitation) =>
+        updateForInvitations.push({ ...invitation, username: username })
+      );
+
+      // deleting invitations from table to prevent foreign key violation
+      if (updateForInvitations) {
+        const { data: data1, error: error2 } = await supabase
+          .from("invitations")
+          .delete()
+          .eq("id", user.id);
+      }
+
       if (!username) {
         alert("Please enter a username.");
       } else {
@@ -80,13 +97,17 @@ const Profile = () => {
           returning: "minimal", // Don't return the value after inserting
         });
 
+        // adding invitations with updated username back into table after changing username in profile table
+        const { error: error3 } = await supabase
+          .from("invitations")
+          .insert(updateForInvitations);
+
         if (error) {
           throw error;
         }
         alert("Profile has been updated!");
       }
     } catch (error) {
-      console.log(error.message);
       if (
         error.message ==
         'duplicate key value violates unique constraint "profiles_username_key"'
