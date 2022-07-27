@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { supabase } from "../helper";
-// import "./FriendList.css";
+import "./FriendList.css";
 
 function FriendList() {
   const [ ids, setIds ] = useState([]);
@@ -19,7 +19,10 @@ function FriendList() {
         .select("friend_id")
         .match({ user_id: user.id })
       if (idError) throw idError;
-      setIds(userFriends)
+      if (userFriends) {
+        alert(userFriends)
+        setIds(userFriends)
+      }
     }
   };
 
@@ -30,6 +33,7 @@ function FriendList() {
         .from("profiles")
         .select(`username, current_loc`)
         .match( {id: ids[i].friend_id} )
+      alert(data)
       if (friendsError) throw friendsError;
       friends.push(
         {
