@@ -24,7 +24,6 @@ const InvitationForm = () => {
   let month = today.getMonth() + 1;
   month = month < 10 ? 0 + month.toString() : month;
   const todayDate = today.getFullYear() + "-" + month + "-" + today.getDate();
-  console.log("todayDate = " + today.getHours());
 
   const dateChangeHandler = (event) => {
     setEnteredDate(event.target.value);
