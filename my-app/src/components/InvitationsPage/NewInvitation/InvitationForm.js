@@ -20,6 +20,12 @@ const InvitationForm = () => {
   const [enteredLocation, setEnteredLocation] = useState("");
   const [username, setUsername] = useState(null);
 
+  const today = new Date();
+  let month = today.getMonth() + 1;
+  month = month < 10 ? 0 + month.toString() : month;
+  const todayDate = today.getFullYear() + "-" + month + "-" + today.getDate();
+  console.log("todayDate = " + today.getHours());
+
   const dateChangeHandler = (event) => {
     setEnteredDate(event.target.value);
   };
@@ -71,6 +77,7 @@ const InvitationForm = () => {
         const { data, error } = await supabase
           .from("invitations")
           .insert([{ ...invitationData }]);
+        alert("Invitation has been created!");
         window.location.reload(false);
       }
 
@@ -109,6 +116,9 @@ const InvitationForm = () => {
               sx={{ width: 250 }}
               value={enteredDate}
               onChange={dateChangeHandler}
+              InputProps={{
+                inputProps: { min: "2022-07-28" },
+              }}
             />
           </Grid>
 
